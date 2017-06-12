@@ -13,7 +13,11 @@ Tool coded for security testing, the author decline any illegal use of this tool
 
 Coded by Cignoraptor.
 
-Install: links2 (sudo apt-get install links2) exiftool (sudo apt-get install libimage-exiftool-perl)
+Maybe your machine have need to install: 
+links2 (sudo apt-get install links2) 
+whois (sudo apt-get install whois)
+exiftool (sudo apt-get install libimage-exiftool-perl)
+pdftotext (sudo apt-get install poppler-utils)
 
 Usage: bash cignotrack.sh
 
