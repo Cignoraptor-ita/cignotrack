@@ -29,11 +29,6 @@ echo " "
 echo "TARGET DOMAIN"
 read target
 
-echo -e "Starting \e[00;31mGEOLOCATION"
-echo -e "\e[00;33m"
-curl -s ipinfo.io/$1 | tr -d '" ,{}'
-echo -e "\e[00m"
-echo " "
 echo -e "Reading whois \e[00;33mdatabase\e[00m"
 
 whois $target > w.txt
@@ -112,6 +107,7 @@ cd -
 echo " "
 echo -e "\e[01;34mEXTRACTING IMAGES FROM DOMAIN SITE\e[00m"
 
+mkdir -p ianalysis
 wget -e robots=off \
     -H -nd -nc -np \
     --recursive -p \
