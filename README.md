@@ -14,4 +14,6 @@ Tool coded for security testing, the author decline any illegal use of this tool
 
 Coded by Cignoraptor.
 
+Install: links2 (sudo apt-get install links2) exiftool (sudo apt-get install libimage-exiftool-perl)
+
 Usage: bash cignotrack.sh
