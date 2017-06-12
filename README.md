@@ -10,7 +10,7 @@ Cignotrack have this features:
 - Extract emails and words of interest about the organization
 - Social media tracking.
 
-Tool coded for security testing, the author decline any alligal use of this tool.
+Tool coded for security testing, the author decline any illegal use of this tool.
 
 Coded by Cignoraptor.
 
