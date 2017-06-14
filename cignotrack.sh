@@ -58,7 +58,7 @@ cd analysis
 echo " "
 echo -e "\e[00;31mMETADATA EXTRACTION\e[00m..."
 echo " "
-exiftool * | grep -E --color Artist
+exiftool * | grep --color -E Artist
 echo "============================="
   exiftool * | grep --color -E "Camera Model Name"
 echo "============================= "
@@ -122,7 +122,7 @@ cd ianalysis
 
 echo -e "EXTRACTING \e[00;31mEXIF DATA\e[00m FROM IMAGES..."
 echo " "
-exiftool * | grep -E --color Artist
+exiftool * | grep --color -E Artist
 echo "============================="
   exiftool * | grep --color -E "Camera Model Name"
 echo "============================= "
