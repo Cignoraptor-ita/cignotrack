@@ -19,5 +19,6 @@ whois (sudo apt-get install whois)
 exiftool (sudo apt-get install libimage-exiftool-perl)
 pdftotext (sudo apt-get install poppler-utils)
 
-Usage: bash cignotrack.sh
+Usage: bash cignotrack.sh   WARNING: Not use a url like target but a domain!
+Exemple: facebook.com
 
