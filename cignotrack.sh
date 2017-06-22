@@ -51,9 +51,12 @@ echo -e "\e[01;33mSearching\e[00m pdf files..."
 rm w.txt
 sleep 1
 
+mkdir -p analysis
+
 wget -e robots=off -H --user-agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10; rv:33.0) Gecko/20100101 Firefox/33.0" -r -l 1 -nd -A pdf http://google.com/search?q=site:$target+filetype:pdf -P analysis
 
 #Extact Metadata con Exiftool
+
 cd analysis
 echo " "
 echo -e "\e[00;31mMETADATA EXTRACTION\e[00m..."
