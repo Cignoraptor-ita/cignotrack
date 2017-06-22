@@ -20,13 +20,13 @@ echo -e "\e[01;34m--------------------------------------------------------------
 echo -e "OSINT tool for extract \e[00;31mInformations, metadata \e[00mand \e[01;34mSocial media\e[00m tracking\e[00m"
 echo -e "\e[01;34m________________________________________________________________________________\e[00m"
 echo " "
-echo -e "Version: 1.0.2 -- \e[00;31m Coded for privacy testing - The author decline any responsability for 
+echo -e "CODENAME: \e[00;34mMr. Swan\e[00m -- \e[00;31m Coded for privacy testing - The author decline any responsability for 
 any illegal use of this tool\e[00m"
 echo " "
 bar
 echo -e "\e[01;34mcoded by Cignoraptor\e[00m"
 echo " "
-echo "TARGET DOMAIN"
+echo "TARGET DOMAIN ... Example: domain.org"
 read target
 
 echo -e "Reading whois \e[00;33mdatabase\e[00m"
@@ -63,20 +63,12 @@ echo -e "\e[00;31mMETADATA EXTRACTION\e[00m..."
 echo " "
 exiftool * | grep --color -E Artist
 echo "============================="
-  exiftool * | grep --color -E "Camera Model Name"
-echo "============================= "
   exiftool * | grep --color -E Software
-echo "============================= "
-  exiftool * | grep --color -E "Serial Number"
 echo "============================= "
   exiftool * | grep --color -E Make
 echo "============================= "
   exiftool * | grep --color -E Author
 echo "============================="
-  exiftool * | grep --color -E GPSLongitude
-echo "============================= "
-  exiftool * | grep --color -E GPSLatitude
-echo "============================= "
   exiftool * | grep --color -E Software
 echo "============================= "
   exiftool * | grep --color -E Make
@@ -107,51 +99,6 @@ echo " "
 rm *.txt
 echo "-----"
 cd -
-echo " "
-echo -e "\e[01;34mEXTRACTING IMAGES FROM DOMAIN SITE\e[00m"
-
-mkdir -p ianalysis
-wget -e robots=off \
-    -H -nd -nc -np \
-    --recursive -p \
-    --level=1 \
-    --accept jpg,jpeg,png,gif \
-    --convert-links -N \
-    --limit-rate=200k \
-    --wait 1.0 \
-    -P ianalysis $target
-echo " "
-cd ianalysis
-
-echo -e "EXTRACTING \e[00;31mEXIF DATA\e[00m FROM IMAGES..."
-echo " "
-exiftool * | grep --color -E Artist
-echo "============================="
-  exiftool * | grep --color -E "Camera Model Name"
-echo "============================= "
-  exiftool * | grep --color -E Software
-echo "============================= "
-  exiftool * | grep --color -E "Serial Number"
-echo "============================= "
-  exiftool * | grep --color -E Make
-echo "============================= "
-  exiftool * | grep --color -E Author
-echo "============================="
-  exiftool * | grep --color -E GPSLongitude
-echo "============================= "
-  exiftool * | grep --color -E GPSLatitude
-echo "============================= "
-  exiftool * | grep --color -E Software
-echo "============================= "
-  exiftool * | grep --color -E Make
-echo "============================= "
-  exiftool * | grep --color -E Author
-echo "============================= "
-  exiftool * | grep --color -E Creator
-
-cd -
-echo " "
-
 echo " "
 echo -e "\e[00;31mEMAIL SPIDER-SEARCH\e[00m..."
 echo -e "\e[00;33mWarning\e[00m: May be a long process"
@@ -341,8 +288,12 @@ links2 -dump google.com/search?q=site:linkedin.com+"$target" > la.txt
 
 cat la.txt | grep --color -e http
 rm la.txt
-
-
+echo " "
+echo -e "Web screenshot\e[00m"
+sleep 1
+wkhtmltoimage http://www.google.com/search?site="&"tbm=isch"&"source=hp"&"biw=1918"&"bih=931"&"q=site:$target target.png
+echo " "
+echo "Screenshot saved like $target.png"
 echo -e "\e[00;32m ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\e[00m"
 echo -e "\e[01;33mAll done\e[00m"
 echo -e "\e[00;33m------------------END-------------------\e[00m"
