@@ -212,7 +212,7 @@ echo -e "\e[00;31mEMAIL SPIDER-SEARCH\e[00m..."
 echo -e "\e[00;33mWarning\e[00m: May be a long process"
 echo " "
 
-links2 -dump  http://$target | sed 's/^ *[0-9]*\. [^h]*//'| grep '^http' | sort | uniq > emeli.txt
+links2 -dump http://$target | sed 's/^ *[0-9]*\. [^h]*//'| grep '^http' | sort | uniq > emeli.txt
 
 for line in `cat emeli.txt`; do
 
