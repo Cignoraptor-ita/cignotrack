@@ -41,10 +41,8 @@ echo -e "\e[01;34mSOCIAL MEDIA LINKS\e[00m"
 echo " "
 
 echo "Searching social links in the Website"
-wget -q http://$target -O - | \
-tr "\t\r\n'" '   "' | \
-grep -i -o '<a[^>]\+href[ ]*=[ \t]*"\(ht\|f\)tps\?:[^"]\+"' | \
-sed -e 's/^.*"\([^"]\+\)".*$/\1/g' > sm.txt
+lynx -dump http://$target | sed 's/^ *[0-9]*\. [^h]*//'| grep '^http' | sort | uniq > sm.txt
+
 	echo "------------------------------------------"
 echo " " 
 sleep 2   		
@@ -67,7 +65,7 @@ echo " "
 sleep 1
 echo -e "--->\e[00;34m20 more used words in the home page\e[00m"
 sleep 1
-links2 -dump http://$target > toppar
+lynx -dump http://$target > toppar
 echo " "
 
 sed 's/\<e\>//g' toppar > toppar2 
@@ -203,14 +201,11 @@ echo -e "\e[00;31mEMAIL SPIDER-SEARCH\e[00m..."
 echo -e "\e[00;33mWarning\e[00m: May be a long process"
 echo " "
 
-wget -q http://$target -O - | \
-tr "\t\r\n'" '   "' | \
-grep -i -o '<a[^>]\+href[ ]*=[ \t]*"\(ht\|f\)tps\?:[^"]\+"' | \
-sed -e 's/^.*"\([^"]\+\)".*$/\1/g' > emeli.txt
+lynx -dump http://$target | sed 's/^ *[0-9]*\. [^h]*//'| grep '^http' | sort | uniq > emeli.txt
 
 for line in `cat emeli.txt`; do
 
-links2 -dump $line | grep --color -e "@$target"
+lynx -dump $line | grep --color -e "@$target"
 done
 rm emeli.txt
 echo " "
