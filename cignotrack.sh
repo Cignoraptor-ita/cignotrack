@@ -20,7 +20,7 @@ echo -e "\e[01;34m--------------------------------------------------------------
 echo -e "OSINT tool for extract \e[00;31mInformations, metadata \e[00mand \e[01;34mSocial media\e[00m tracking\e[00m"
 echo -e "\e[01;34m________________________________________________________________________________\e[00m"
 echo " "
-echo -e "CODENAME: \e[00;34mMr. Swan\e[00m -- \e[00;31m Coded for privacy testing - The author decline any responsability for 
+echo -e "CODENAME: \e[00;44mReal swan\e[00m -- \e[00;31m Coded for privacy testing - The author decline any responsability for 
 any illegal use of this tool\e[00m"
 echo " "
 bar
@@ -45,82 +45,39 @@ cat w.txt | grep --color -E Name
 echo " "
 cat w.txt | grep --color -E Address
 echo  " "
-sleep 1
-
-echo -e "\e[01;33mSearching\e[00m pdf files..."
 rm w.txt
 sleep 1
 
-mkdir -p analysis
-
-wget -e robots=off -H --user-agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10; rv:33.0) Gecko/20100101 Firefox/33.0" -r -l 1 -nd -A pdf http://google.com/search?q=site:$target+filetype:pdf -P analysis
-
-#Extact Metadata con Exiftool
-
-cd analysis
 echo " "
-echo -e "\e[00;31mMETADATA EXTRACTION\e[00m..."
+echo -e "\e[01;34mSOCIAL MEDIA LINKS\e[00m"
 echo " "
-exiftool * | grep --color -E Artist
-echo "============================="
-  exiftool * | grep --color -E Software
-echo "============================= "
-  exiftool * | grep --color -E Make
-echo "============================= "
-  exiftool * | grep --color -E Author
-echo "============================="
-  exiftool * | grep --color -E Software
-echo "============================= "
-  exiftool * | grep --color -E Make
-echo "============================= "
-  exiftool * | grep --color -E Author
-echo "============================= "
-  exiftool * | grep --color -E Creator
 
+echo "Searching social links in the Website"
+	links2 -dump http://$target | sed 's/^ *[0-9]*\. [^h]*//'| grep '^http' | sort | uniq > sm.txt 
+	echo "------------------------------------------"
+echo " " 
+sleep 2   		
+echo -e "\e[00;41mSOCIAL NETWORK LINKS\e[00m..."
 echo " "
-echo -e "Converting pdf files in txt and IP/EMAIL \e[00;34manalysis\e[00m"
+cat sm.txt | grep --color -E twitter
+echo " "
+cat sm.txt | grep --color -E plus.google.com
+echo " "
+cat sm.txt | grep --color -E facebook
+echo " "
+cat sm.txt | grep --color -E linkedin
+echo " "
+cat sm.txt | grep --color -E pinterest
+echo " "
+cat sm.txt | grep --color -E instagram
+
+rm sm.txt
+echo " "
 sleep 1
-ls -1a > listpdf.txt
-
-for line in `cat listpdf.txt`; do
-
-pdftotext $line
-done
-
-echo " "
-echo -e "\e[00;34mIP\e[00m"
-grep --color -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' *.txt
-echo " "
-echo -e "\e[00;34memails\e[00m"
-
-grep --color -o '[[:alnum:]+\.\_\-]*@[[:alnum:]+\.\_\-]*' *.txt | sort | uniq -i
-echo " "
-
-rm *.txt
-echo "-----"
-cd -
-echo " "
-echo -e "\e[00;31mEMAIL SPIDER-SEARCH\e[00m..."
-echo -e "\e[00;33mWarning\e[00m: May be a long process"
-echo " "
-
-links2 -dump  http://$target | sed 's/^ *[0-9]*\. [^h]*//'| grep '^http' | sort | uniq > emeli.txt
-
-for line in `cat emeli.txt`; do
-
-links2 -dump $line | grep --color -e "@$target"
-done
-rm emeli.txt
-echo " "
-
-
 echo -e "--->\e[00;34m20 more used words in the home page\e[00m"
-
+sleep 1
 links2 -dump http://$target > toppar
-
-
 echo " "
-
 
 sed 's/\<e\>//g' toppar > toppar2 
 sed 's/\<la\>//g' toppar2 > toppar3  
@@ -250,34 +207,56 @@ echo " "
 rm toppar
 rm risu
 echo " "
-echo -e "\e[01;34mSOCIAL MEDIA LINKS\e[00m"
 
-	links2 -dump http://$target | sed 's/^ *[0-9]*\. [^h]*//'| grep '^http' | sort | uniq > sm.txt 
-	echo "------------------------------------------"
-echo " " 
-sleep 2   		
-echo -e "\e[00;41mSOCIAL NETWORKS LINKS\e[00m..."
-echo " "
-cat sm.txt | grep --color -E twitter
-echo " "
-cat sm.txt | grep --color -E plus.google.com
-echo " "
-cat sm.txt | grep --color -E facebook
-echo " "
-cat sm.txt | grep --color -E linkedin
-echo " "
-cat sm.txt | grep --color -E pinterest
-echo " "
-cat sm.txt | grep --color -E instagram
-
-rm sm.txt
-
+echo -e "\e[00;31mEMAIL SPIDER-SEARCH\e[00m..."
+echo -e "\e[00;33mWarning\e[00m: May be a long process"
 echo " "
 
-echo -e "$target \e[00;31mNEWS\e[00m ON \e[00;34mFACEBOOK\e[00m IN THE LAST \e[01;32m24 HOURS\e[00m"
+links2 -dump  http://$target | sed 's/^ *[0-9]*\. [^h]*//'| grep '^http' | sort | uniq > emeli.txt
+
+for line in `cat emeli.txt`; do
+
+links2 -dump $line | grep --color -e "@$target"
+done
+rm emeli.txt
+echo " "
+sleep 1
+echo -e "\e[01;33mSearching\e[00m pdf files..."
+
+sleep 1
+
+mkdir -p analysis
+
+wget -e robots=off -H --user-agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10; rv:33.0) Gecko/20100101 Firefox/33.0" -r -l 1 -nd -A pdf http://google.com/search?q=site:$target+filetype:pdf -P analysis
+
+#Extact Metadata con Exiftool
+
+cd analysis
+echo " "
+echo -e "\e[00;31mMETADATA EXTRACTION\e[00m..."
+echo " "
+exiftool * | grep --color -E Artist
+echo "============================="
+ exiftool * | grep --color -E Software
+echo "============================= "
+ exiftool * | grep --color -E Make
+echo "============================= "
+ exiftool * | grep --color -E Author
+echo "============================="
+ exiftool * | grep --color -E Software
+echo "============================= "
+ exiftool * | grep --color -E Make
+echo "============================= "
+ exiftool * | grep --color -E Author
+echo "============================= "
+ exiftool * | grep --color -E Creator
+
+cd -
+echo " "
+echo -e "$target \e[00;31mSearching\e[00m in \e[00;34mFACEBOOK\e[00m"
 sleep 2
 echo " "
-links2 -dump google.com/search?q=site:facebook.com+"$target""&"tbs=qdr:d > sf.txt
+links2 -dump google.com/search?q=site:facebook.com+"$target" > sf.txt
 
 cat sf.txt | grep --color -e http
 rm sf.txt
@@ -289,7 +268,7 @@ links2 -dump google.com/search?q=site:linkedin.com+"$target" > la.txt
 cat la.txt | grep --color -e http
 rm la.txt
 echo " "
-echo -e "Web screenshot\e[00m"
+echo -e "\e[00;33mWeb screenshot\e[00m"
 sleep 1
 wkhtmltoimage http://www.google.com/search?site="&"tbm=isch"&"source=hp"&"biw=1918"&"bih=931"&"q=site:$target target.png
 echo " "
