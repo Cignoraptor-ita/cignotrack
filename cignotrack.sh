@@ -1,3 +1,4 @@
+#!/bin/bash
 #Scritto da Cignoraptor
 
 echo " "
@@ -31,21 +32,8 @@ read target
 
 echo -e "Reading whois \e[00;33mdatabase\e[00m"
 
-whois $target > w.txt
-cat w.txt | grep --color -E "Registrant Name"
-echo " "
-cat w.txt | grep --color -E City
-echo " "
-cat w.txt | grep --color -E Phone
-echo " "
-cat w.txt | grep --color -E Email
-echo " "
-sleep 0.3
-cat w.txt | grep --color -E Name
-echo " "
-cat w.txt | grep --color -E Address
-echo  " "
-rm w.txt
+whois $target
+
 sleep 1
 
 echo " "
@@ -53,7 +41,10 @@ echo -e "\e[01;34mSOCIAL MEDIA LINKS\e[00m"
 echo " "
 
 echo "Searching social links in the Website"
-	links2 -dump http://$target | sed 's/^ *[0-9]*\. [^h]*//'| grep '^http' | sort | uniq > sm.txt 
+wget -q http://$target -O - | \
+tr "\t\r\n'" '   "' | \
+grep -i -o '<a[^>]\+href[ ]*=[ \t]*"\(ht\|f\)tps\?:[^"]\+"' | \
+sed -e 's/^.*"\([^"]\+\)".*$/\1/g' > sm.txt
 	echo "------------------------------------------"
 echo " " 
 sleep 2   		
@@ -212,7 +203,10 @@ echo -e "\e[00;31mEMAIL SPIDER-SEARCH\e[00m..."
 echo -e "\e[00;33mWarning\e[00m: May be a long process"
 echo " "
 
-links2 -dump http://$target | sed 's/^ *[0-9]*\. [^h]*//'| grep '^http' | sort | uniq > emeli.txt
+wget -q http://$target -O - | \
+tr "\t\r\n'" '   "' | \
+grep -i -o '<a[^>]\+href[ ]*=[ \t]*"\(ht\|f\)tps\?:[^"]\+"' | \
+sed -e 's/^.*"\([^"]\+\)".*$/\1/g' > emeli.txt
 
 for line in `cat emeli.txt`; do
 
