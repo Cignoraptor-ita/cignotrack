@@ -15,7 +15,7 @@ Tool coded for security testing, the author decline any illegal use of this tool
 Coded by Cignoraptor.
 
 Maybe your machine have need to install: 
-lynx (sudo apt-get install lynx) 
+links2 (sudo apt-get install links2) 
 whois (sudo apt-get install whois)
 exiftool (sudo apt-get install libimage-exiftool-perl)
 wkhtmltopdf (sudo apt-get install wkhtmltopdf)
