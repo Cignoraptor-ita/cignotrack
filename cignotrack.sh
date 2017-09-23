@@ -21,7 +21,7 @@ echo -e "\e[01;34m--------------------------------------------------------------
 echo -e "OSINT tool for extract \e[00;31mInformations, metadata \e[00mand \e[01;34mSocial media\e[00m tracking\e[00m"
 echo -e "\e[01;34m________________________________________________________________________________\e[00m"
 echo " "
-echo -e "CODENAME: \e[00;44mReal swan\e[00m -- \e[00;31m Coded for privacy testing - The author decline any responsability for 
+echo -e "CODENAME: \e[00;46mFrozen Swan\e[00m -- \e[00;31m Coded for privacy testing - The author decline any responsability for 
 any illegal use of this tool\e[00m"
 echo " "
 bar
@@ -41,7 +41,9 @@ echo -e "\e[01;34mSOCIAL MEDIA LINKS\e[00m"
 echo " "
 
 echo "Searching social links in the Website"
-lynx -dump http://$target | sed 's/^ *[0-9]*\. [^h]*//'| grep '^http' | sort | uniq > sm.txt
+
+wget --no-check-certificate -qO- $target > fs.html
+cat fs.html | egrep -o  "(http|https):.*\">" | awk 'BEGIN {FS="\""};{print $1}' > sm.txt
 
 	echo "------------------------------------------"
 echo " " 
@@ -59,13 +61,16 @@ echo " "
 cat sm.txt | grep --color -E pinterest
 echo " "
 cat sm.txt | grep --color -E instagram
+echo " "
+cat sm.txt | grep --color -E youtube
 
-rm sm.txt
+rm fs.html
+
 echo " "
 sleep 1
 echo -e "--->\e[00;34m20 more used words in the home page\e[00m"
 sleep 1
-lynx -dump http://$target > toppar
+links2 -ssl.certificates 0 -dump $target > toppar
 echo " "
 
 sed 's/\<e\>//g' toppar > toppar2 
@@ -201,13 +206,11 @@ echo -e "\e[00;31mEMAIL SPIDER-SEARCH\e[00m..."
 echo -e "\e[00;33mWarning\e[00m: May be a long process"
 echo " "
 
-lynx -dump http://$target | sed 's/^ *[0-9]*\. [^h]*//'| grep '^http' | sort | uniq > emeli.txt
+for line in `cat sm.txt`; do
 
-for line in `cat emeli.txt`; do
-
-lynx -dump $line | grep --color -e "@$target"
+links2 -ssl.certificates 0 -dump $line | grep --color -e "@$target"
 done
-rm emeli.txt
+
 echo " "
 sleep 1
 echo -e "\e[01;33mSearching\e[00m pdf files..."
@@ -245,16 +248,18 @@ echo " "
 echo -e "$target \e[00;31mSearching\e[00m in \e[00;34mFACEBOOK\e[00m"
 sleep 2
 echo " "
-links2 -dump google.com/search?q=site:facebook.com+"$target" > sf.txt
+links2 -dump google.com/search?q=site:facebook.com+"$target" > sfa.txt
 
-cat sf.txt | grep --color -e http
-rm sf.txt
+cat sfa.txt | grep --color -e http
+cat sfa.txt | grep --color -e www.
+rm sfa.txt
 sleep 1
 echo " "
 echo -e "Some Linkedin people links \e[00;31massociated\e[00m with organization target"
 links2 -dump google.com/search?q=site:linkedin.com+"$target" > la.txt
 
 cat la.txt | grep --color -e http
+cat la.txt | grep --color -e www.
 rm la.txt
 echo " "
 echo -e "\e[00;33mWeb screenshot\e[00m"
@@ -262,6 +267,7 @@ sleep 1
 wkhtmltoimage http://www.google.com/search?site="&"tbm=isch"&"source=hp"&"biw=1918"&"bih=931"&"q=site:$target target.png
 echo " "
 echo "Screenshot saved like $target.png"
+rm sm.txt
 echo -e "\e[00;32m ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\e[00m"
 echo -e "\e[01;33mAll done\e[00m"
 echo -e "\e[00;33m------------------END-------------------\e[00m"
