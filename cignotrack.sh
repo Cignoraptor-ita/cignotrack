@@ -217,7 +217,7 @@ sleep 1
 echo -e "\e[01;33mSearching and EXTRACTING\e[00m images in the website..."
 echo " "
 sleep 1
-echo -e "\e[01;33mPDF ANALYSIS IN SUSPENDED FOR THE MOMENT\e[00m"
+echo -e "\e[01;33mPDF ANALYSIS IS SUSPENDED FOR THE MOMENT\e[00m"
 
 mkdir -p images-analysis
 
