@@ -21,7 +21,7 @@ echo -e "\e[01;34m--------------------------------------------------------------
 echo -e "OSINT tool for extract \e[00;31mInformations, metadata \e[00mand \e[01;34mSocial media\e[00m tracking\e[00m"
 echo -e "\e[01;34m________________________________________________________________________________\e[00m"
 echo " "
-echo -e "CODENAME: \e[00;46mFrozen Swan\e[00m -- \e[00;31m Coded for privacy testing - The author decline any responsability for 
+echo -e "CODENAME: \e[00;46mSwan in the lake\e[00m -- \e[00;31m Coded for privacy testing - The author decline any responsability for 
 any illegal use of this tool\e[00m"
 echo " "
 bar
@@ -64,7 +64,6 @@ cat sm.txt | grep --color -E instagram
 echo " "
 cat sm.txt | grep --color -E youtube
 
-rm fs.html
 
 echo " "
 sleep 1
@@ -265,10 +264,13 @@ cat la.txt | grep --color -e www.
 rm la.txt
 echo " "
 echo -e "\e[00;33mWeb screenshot\e[00m"
-sleep 1
-wkhtmltoimage http://www.google.com/search?site="&"tbm=isch"&"source=hp"&"biw=1918"&"bih=931"&"q=site:$target target.png
+sleep 2
+wkhtmltoimage fs.html $target.png
+sleep 2
 echo " "
-echo "Screenshot saved like $target.png"
+echo -e "\e[00;33mIMAGE-REPORT SAVED AS $target.png\e[00m"
+echo " "
+rm fs.html
 rm sm.txt
 echo -e "\e[00;32m ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\e[00m"
 echo -e "\e[01;33mAll done\e[00m"
