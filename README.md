@@ -5,7 +5,7 @@ Privacy and social engineering vulnerability testing tool.
 Cignotrack have this features:
 
 - Read whois database
-- Extract and analyze the metadata of documents
+- Extract and analyze the metadata of the images in the website (documents/pdf analysis is suspended for moment)
 - Extract emails and words of interest about the organization
 - Web screenshot
 - Social media tracking.
