@@ -214,35 +214,49 @@ done
 
 echo " "
 sleep 1
-echo -e "\e[01;33mSearching\e[00m pdf files..."
-
+echo -e "\e[01;33mSearching and EXTRACTING\e[00m images in the website..."
+echo " "
 sleep 1
+echo -e "\e[01;33mPDF ANALYSIS IN SUSPENDED FOR THE MOMENT\e[00m"
 
-mkdir -p analysis
+mkdir -p images-analysis
 
-wget -e robots=off -H --user-agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10; rv:33.0) Gecko/20100101 Firefox/33.0" -r -l 1 -nd -A pdf http://google.com/search?q=site:$target+filetype:pdf -P analysis
+wget --user-agent="Mozilla/5.0 (X11; CrOS x86_64 5116.88.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.124 Safari/537.36" -e robots=off \
+-H -nd -nc -np \
+--recursive -p \
+--level=1 \
+--accept jpg,jpeg,png \
+--convert-links -N \
+--limit-rate=200k \
+--wait 2.0 \
+-P images-analysis $target
+
 
 #Extact Metadata con Exiftool
 
-cd analysis
+cd images-analysis
 echo " "
 echo -e "\e[00;31mMETADATA EXTRACTION\e[00m..."
 echo " "
+echo -e "\e[00;33mArtist...\e[00m"
 exiftool * | grep --color -E Artist
 echo "============================="
- exiftool * | grep --color -E Software
+echo -e "\e[00;33mSoftware...\e[00m"
+exiftool * | grep --color -E Software
 echo "============================= "
- exiftool * | grep --color -E Make
+echo -e "\e[00;33mMake...\e[00m"
+exiftool * | grep --color -E Make
 echo "============================= "
- exiftool * | grep --color -E Author
+echo -e "\e[00;33mAuthor...\e[00m"
+exiftool * | grep --color -E Author
 echo "============================="
- exiftool * | grep --color -E Software
-echo "============================= "
- exiftool * | grep --color -E Make
-echo "============================= "
- exiftool * | grep --color -E Author
-echo "============================= "
- exiftool * | grep --color -E Creator
+echo -e "\e[00;33mCreator...\e[00m"
+exiftool * | grep --color -E Creator
+ echo -e "============\e[01;33mGPS LATITUDE\e[00m================="
+exiftool * | grep --color -E "GPS Latitude"
+ echo -e "============\e[01;33mGPS LONGITUDE\e[00m================="
+exiftool * | grep --color -E "GPS Longitude"
+echo " "
 
 cd -
 echo " "
