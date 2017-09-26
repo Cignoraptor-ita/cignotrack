@@ -43,7 +43,7 @@ echo " "
 echo "Searching social links in the Website"
 
 wget --no-check-certificate -qO- $target > fs.html
-cat fs.html | egrep -o  "(http|https):.*\">" | awk 'BEGIN {FS="\""};{print $1}' > sm.txt
+cat fs.html | egrep -o "(http|https):.*\">" | awk 'BEGIN {FS="\""};{print $1}' > sm.txt
 
 	echo "------------------------------------------"
 echo " " 
@@ -206,9 +206,11 @@ echo -e "\e[00;31mEMAIL SPIDER-SEARCH\e[00m..."
 echo -e "\e[00;33mWarning\e[00m: May be a long process"
 echo " "
 
+
+links2 -ssl.certificates 0 -dump $target | grep --color -o -i '[[:alnum:]+\.\_\-]*@[[:alnum:]+\.\_\-]*' | sort | uniq -i
 for line in `cat sm.txt`; do
 
-links2 -ssl.certificates 0 -dump $line | grep --color -e "@$target"
+links2 -ssl.certificates 0 -dump $line | grep --color -o -i '[[:alnum:]+\.\_\-]*@[[:alnum:]+\.\_\-]*' | sort | uniq -i
 done
 
 echo " "
