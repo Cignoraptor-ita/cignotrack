@@ -21,7 +21,7 @@ echo -e "\e[01;34m--------------------------------------------------------------
 echo -e "OSINT tool for extract \e[00;31mInformations, metadata \e[00mand \e[01;34mSocial media\e[00m tracking\e[00m"
 echo -e "\e[01;34m________________________________________________________________________________\e[00m"
 echo " "
-echo -e "CODENAME: \e[00;46mSwan in the lake\e[00m -- \e[00;31m Coded for privacy testing - The author decline any responsability for 
+echo -e "CODENAME: \e[01;46mSwan in a \e[00;44mcold\e[01;46m lake\e[00m -- \e[00;31m Coded for privacy testing - The author decline any responsability for 
 any illegal use of this tool\e[00m"
 echo " "
 bar
@@ -217,7 +217,6 @@ sleep 1
 echo -e "\e[01;33mSearching and EXTRACTING\e[00m images in the website..."
 echo " "
 sleep 1
-echo -e "\e[01;33mPDF ANALYSIS IS SUSPENDED FOR THE MOMENT\e[00m"
 
 mkdir -p images-analysis
 
@@ -252,12 +251,51 @@ exiftool * | grep --color -E Author
 echo "============================="
 echo -e "\e[00;33mCreator...\e[00m"
 exiftool * | grep --color -E Creator
- echo -e "============\e[01;33mGPS LATITUDE\e[00m================="
+echo "============================="
+echo -e "\e[00;33mCamera model...\e[00m"
+exiftool * | grep --color -E "Camera Model Name"
+echo "============================="
+echo -e "\e[00;33mSerial number...\e[00m"
+exiftool * | grep --color -E "Serial Number"
+echo "============================="
+echo -e "============\e[01;33mGPS LATITUDE\e[00m================="
 exiftool * | grep --color -E "GPS Latitude"
+echo " "
+echo "============================="
  echo -e "============\e[01;33mGPS LONGITUDE\e[00m================="
 exiftool * | grep --color -E "GPS Longitude"
 echo " "
+cd -
 
+sleep 1
+echo -e "\e[01;33mSearching and EXTRACTING\e[00m PDF files from Bing results..."
+echo " "
+sleep 1
+
+mkdir -p pdf-analysis
+
+wget -e robots=off -H --user-agent="Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.3) Gecko/2008092416 Firefox/3.0.3" -r -l 1 -nd -A .pdf -P pdf-analysis https://www.bing.com/search?q=site%3Aagraria.org+filetype%3Apdf
+
+cd pdf-analysis
+echo " "
+echo -e "\e[00;33mArtist...\e[00m"
+exiftool * | grep --color -E Artist
+echo "============================="
+echo -e "\e[00;33mSoftware...\e[00m"
+exiftool * | grep --color -E Software
+echo "============================= "
+echo -e "\e[00;33mMake...\e[00m"
+exiftool * | grep --color -E Make
+echo "============================= "
+echo -e "\e[00;33mAuthor...\e[00m"
+exiftool * | grep --color -E Author
+echo "============================="
+echo -e "\e[00;33mCreator...\e[00m"
+exiftool * | grep --color -E Creator
+echo "============================="
+echo -e "\e[00;33mProducer...\e[00m"
+exiftool * | grep --color -E Producer
+echo " "
 cd -
 echo " "
 echo -e "$target \e[00;31mSearching\e[00m in \e[00;34mFACEBOOK\e[00m"
