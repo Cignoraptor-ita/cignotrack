@@ -21,7 +21,7 @@ echo -e "\e[01;34m--------------------------------------------------------------
 echo -e "OSINT tool for extract \e[00;31mInformations, metadata \e[00mand \e[01;34mSocial media\e[00m tracking\e[00m"
 echo -e "\e[01;34m________________________________________________________________________________\e[00m"
 echo " "
-echo -e "CODENAME: \e[01;46mSwan in a \e[00;44mcold\e[01;46m lake\e[00m -- \e[00;31m Coded for privacy testing - The author decline any responsability for 
+echo -e "CODENAME: \e[01;46mElite Swan\e[00m -- \e[00;31m Coded for privacy testing - The author decline any responsability for 
 any illegal use of this tool\e[00m"
 echo " "
 bar
@@ -206,11 +206,27 @@ echo -e "\e[00;33mWarning\e[00m: May be a long process"
 echo " "
 
 
-links2 -ssl.certificates 0 -dump $target | grep --color -o -i '[[:alnum:]+\.\_\-]*@[[:alnum:]+\.\_\-]*' | sort | uniq -i
+links2 -ssl.certificates 0 -dump $target > et.txt
+sleep 0.5
+echo -e "\e[01;33m$target emails from website\e[00m..."
+cat et.txt | grep --color -o "[^:]*@$target"
+echo -e "\e[01;33mgmail emails from website\e[00m..."
+cat et.txt | grep --color -o "[^:]*@gmail.com"
+rm et.txt
+echo " "
+echo -e "\e[00;33mSTARTING EMAIL SPIDER\e[00m..."
+sleep 1.5
+
 for line in `cat sm.txt`; do
 
-links2 -ssl.certificates 0 -dump $line | grep --color -o -i '[[:alnum:]+\.\_\-]*@[[:alnum:]+\.\_\-]*' | sort | uniq -i
+links2 -ssl.certificates 0 -dump $line | grep --color -o "[^:]*@$target"
 done
+sleep 1
+
+echo " "
+echo -e "\e[00;34mSearching Gmail emails associated using google dorks\e[00m"
+sleep 2
+links2 -http.fake-user-agent "Mozilla/5.0 (X11; FreeBSD amd64; rv:26.0) Gecko/20100101 Firefox/26.0" -ssl.certificates 0 -dump google.com/search?q=site:$target+AND+"%40gmail.com" | grep --color -o "[^:]*@gmail.com"
 
 echo " "
 sleep 1
@@ -220,7 +236,7 @@ sleep 1
 
 mkdir -p images-analysis
 
-wget --user-agent="Mozilla/5.0 (X11; CrOS x86_64 5116.88.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.124 Safari/537.36" -e robots=off \
+wget --user-agent="Mozilla/5.0 (X11; CrOS x86_64 5116.88.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.124 Safari/537.36" --no-check-certificate -e robots=off \
 -H -nd -nc -np \
 --recursive -p \
 --level=1 \
@@ -274,7 +290,7 @@ sleep 1
 
 mkdir -p pdf-analysis
 
-wget -e robots=off -H --user-agent="Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.3) Gecko/2008092416 Firefox/3.0.3" -r -l 1 -nd -A .pdf -P pdf-analysis https://www.bing.com/search?q=site%3Aagraria.org+filetype%3Apdf
+wget --no-check-certificate -e robots=off -H --user-agent="Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.3) Gecko/2008092416 Firefox/3.0.3" -r -l 1 -nd -A .pdf -P pdf-analysis https://www.bing.com/search?q=site%3A$target+filetype%3Apdf
 
 cd pdf-analysis
 echo " "
