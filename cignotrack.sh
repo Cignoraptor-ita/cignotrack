@@ -18,14 +18,14 @@ echo -e "\e[00;44m______________________\e[00mCIGNOTRACK\e[00;44m_______________
 echo " "
 
 echo -e "\e[01;34m--------------------------------------------------------------------------------\e[00m"
-echo -e "OSINT tool for extract \e[00;31mInformations, metadata \e[00mand \e[01;34mSocial media\e[00m tracking\e[00m"
+echo -e "OSINT tool for extract \e[01;36mInformations, \e[01;33mmetadata \e[00m \e[01;34mSocial media\e[00m tracking\e[00m and \e[00;31mprivacy threat\e[00m"
 echo -e "\e[01;34m________________________________________________________________________________\e[00m"
 echo " "
-echo -e "CODENAME: \e[01;46mElite swan\e[00m -- \e[00;31m Coded for privacy testing - The author decline any responsability for 
+echo -e "CODENAME: \e[01;46mDragonswan\e[00m -- \e[00;31m Coded for privacy testing - The author decline any responsability for 
 any illegal use of this tool\e[00m"
 echo " "
 bar
-echo -e "\e[01;34mcoded by Cignoraptor\e[00m"
+echo -e "\e[01;34mcoded by Cignoraptor\e[00m --- contact for help or suggestions > \e[00;34mroot4sec6per3@openmailbox.org\e[00m"
 echo " "
 echo "TARGET DOMAIN ... Example: domain.org"
 read target
@@ -314,17 +314,28 @@ exiftool * | grep --color -E Producer
 echo " "
 cd -
 echo " "
-echo -e "$target \e[00;31mSearching\e[00m in \e[00;34mFACEBOOK\e[00m"
-sleep 2
+echo -e "$target \e[00;31mSearching\e[00m in \e[00;34mFACEBOOK\e[00m \e[01;33mwith custom words of interest\e[00m"
+echo -e "\e[01;32mPlease insert 3 words of interest: \e[00m"
+echo "--- 1: "
+read int1
+echo "--- 2: "
+read int2
+echo "--- 3: "
+read int3
 echo " "
-links2 -dump google.com/search?q=site:facebook.com+"$target" > sfa.txt
+sleep 2
+echo -e "\e[01;33mSearching with google dork\eè00m..."
+echo " "
+links2 -http.fake-user-agent "Mozilla/5.0 (X11; FreeBSD amd64; rv:26.0) Gecko/20100101 Firefox/26.0" -ssl.certificates 0 -dump google.com/search?q=site:facebook.com+"$target"+AND+"$int1"+OR+"$int2"+OR+"$int3" > sfa.txt
 
 cat sfa.txt | grep --color -e http
 cat sfa.txt | grep --color -e www.
 rm sfa.txt
-sleep 1
+
 echo " "
 echo -e "Some Linkedin people links \e[00;31massociated\e[00m with organization target"
+sleep 2
+
 links2 -dump google.com/search?q=site:linkedin.com+"$target" > la.txt
 
 cat la.txt | grep --color -e http
@@ -332,18 +343,34 @@ cat la.txt | grep --color -e www.
 rm la.txt
 echo " "
 
+
+echo -e "\e[00;31mSearching database and log files...\e[00m"
+sleep 0.5
+links2 -http.fake-user-agent "Mozilla/5.0 (X11; FreeBSD amd64; rv:26.0) Gecko/20100101 Firefox/26.0" -ssl.certificates 0 -dump https://www.bing.com/search?q=site%3A$target+filetype%3Adat+|+log > datlog.txt
+sleep 0.2
+cat datlog.txt | grep --color -e http
+cat datlog.txt | grep --color -e www.
+rm datlog.txt
+echo " "
+
+
+echo -e "\e[01:42m                    \e[00m"
+echo " "
+echo "Ok... hoping google it's not blocking... now will start a default password search"
+echo "\e[00;41                        \e[00m"
+echo " "
+sleep 2
+
+links2 -http.fake-user-agent "Mozilla/5.0 (X11; FreeBSD amd64; rv:26.0) Gecko/20100101 Firefox/26.0" -ssl.certificates 0 -dump google.com/search?q=site:"$target"+"default password" > dfp.txt
+
+cat dfp.txt | grep --color -e http
+cat dfp.txt | grep --color -e www.
+rm dfp.txt
+
+
+
 rm fs.html
 rm sm.txt
 echo -e "\e[00;32m ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\e[00m"
 echo -e "\e[01;33mAll done\e[00m"
 echo -e "\e[00;33m------------------END-------------------\e[00m"
-
-
-
-
-
-
-
-
-
-
