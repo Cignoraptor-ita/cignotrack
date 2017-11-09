@@ -7,7 +7,8 @@ Cignotrack have this features:
 - Read whois database
 - Extract and analyze the metadata of the images and pdf documents
 - Extract emails and words of interest about the organization
-- Social media tracking.
+- Social media tracking with custom words of interest
+- Search for deafault password and sensitive files.
 
 Tool coded for security testing, the author decline any illegal use of this tool.
 
