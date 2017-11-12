@@ -21,7 +21,7 @@ echo -e "\e[01;34m--------------------------------------------------------------
 echo -e "OSINT tool for extract \e[01;36mInformations, \e[01;33mmetadata \e[00m \e[01;34mSocial media\e[00m tracking\e[00m and \e[00;31mprivacy threat\e[00m"
 echo -e "\e[01;34m________________________________________________________________________________\e[00m"
 echo " "
-echo -e "CODENAME: \e[01;46mDragonswan\e[00m -- \e[00;31m Coded for privacy testing - The author decline any responsability for 
+echo -e "CODENAME: \e[01;46mCignonite\e[00m -- \e[00;31m Coded for privacy testing - The author decline any responsability for 
 any illegal use of this tool\e[00m"
 echo " "
 bar
@@ -30,15 +30,35 @@ echo " "
 echo "TARGET DOMAIN ... Example: domain.org"
 read target
 
-echo -e "Reading whois \e[00;33mdatabase\e[00m"
+echo -e "\e[01;32mDomain IP lookup\e[00m"
+echo " "
+links2 -dump http://www.ip-tracker.org/locator/ip-lookup.php?ip=$target > domin.txt
+echo " "
+cat domin.txt | grep --color -oP 'IP Address:.*$'
+echo " "
+cat domin.txt | grep --color -oP 'Country:.*$'
+echo " "
+cat domin.txt | grep --color -oP 'City:.*$'
+echo " "
+cat domin.txt | grep --color -oP 'ISP:.*$'
+echo " "
+cat domin.txt | grep --color -oP 'Organization:.*$'
+echo " "
+rm domin.txt
+
+echo -e "Insert ENTER for start the whois \e[00;33mdatabase search\e[00m"
+read invio23
 
 whois $target
 
 sleep 1
 
 echo " "
-echo -e "\e[01;34mSOCIAL MEDIA LINKS\e[00m"
+echo -e "\e[01;34mSOCIAL MEDIA LINKS SEARCH\e[00m"
+echo "Insert ENTER for start... "
+
 echo " "
+read start234
 
 echo "Searching social links in the Website"
 
@@ -201,10 +221,12 @@ rm toppar
 rm risu
 echo " "
 
-echo -e "\e[00;31mEMAIL SPIDER-SEARCH\e[00m..."
-echo -e "\e[00;33mWarning\e[00m: May be a long process"
+echo -e "\e[00;31mEMAIL SEARCH\e[00m..."
+echo -e "\e[00;33mWarning\e[00m: The spider search may be a long process"
 echo " "
-
+echo "Insert ENTER for start..."
+read inviasec
+echo " "
 
 links2 -ssl.certificates 0 -dump $target > et.txt
 sleep 0.5
@@ -226,17 +248,20 @@ sleep 1
 echo " "
 echo -e "\e[00;34mSearching Gmail emails associated using google dorks\e[00m"
 sleep 2
-links2 -http.fake-user-agent "Mozilla/5.0 (X11; FreeBSD amd64; rv:26.0) Gecko/20100101 Firefox/26.0" -ssl.certificates 0 -dump google.com/search?q=site:$target+AND+"%40gmail.com" | grep --color -o "[^:]*@gmail.com"
+links2 -http.fake-user-agent "Mozilla/5.0 (X11; FreeBSD amd64; rv:26.0) Gecko/20100101 Firefox/26.0" -ssl.certificates 0 -dump google.it/search?q=site:$target+AND+"%40gmail.com" | grep --color -o "[^:]*@gmail.com"
 
 echo " "
 sleep 1
-echo -e "\e[01;33mSearching and EXTRACTING\e[00m images in the website..."
+echo -e "\e[01;33mSearch and EXTRACTION OF\e[00m images in the website..."
+echo "Insert ENTER  for start..."
+read ent5670
+
 echo " "
 sleep 1
 
 mkdir -p images-analysis
 
-wget --user-agent="Mozilla/5.0 (X11; CrOS x86_64 5116.88.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.124 Safari/537.36" --no-check-certificate -e robots=off \
+wget --user-agent="Mozilla/5.0 (X11; FreeBSD amd64; rv:26.0) Gecko/20100101 Firefox/26.0" --no-check-certificate -e robots=off \
 -H -nd -nc -np \
 --recursive -p \
 --level=1 \
@@ -284,7 +309,10 @@ echo " "
 cd -
 
 sleep 1
-echo -e "\e[01;33mSearching and EXTRACTING\e[00m PDF files from Bing results..."
+echo -e "\e[01;33mSearch and EXTRACTION OF\e[00m PDF files from Bing results..."
+echo "Insert ENTER for start..."
+read inv378
+
 echo " "
 sleep 1
 
@@ -314,7 +342,7 @@ exiftool * | grep --color -E Producer
 echo " "
 cd -
 echo " "
-echo -e "$target \e[00;31mSearching\e[00m in \e[00;34mFACEBOOK\e[00m \e[01;33mwith custom words of interest\e[00m"
+echo -e "$target \e[00;31mSearch\e[00m in \e[00;34mFACEBOOK\e[00m \e[01;33mwith custom words of interest\e[00m"
 echo -e "\e[01;32mPlease insert 3 words of interest: \e[00m"
 echo "--- 1: "
 read int1
@@ -326,7 +354,7 @@ echo " "
 sleep 2
 echo -e "\e[01;33mSearching with google dork\eè00m..."
 echo " "
-links2 -http.fake-user-agent "Mozilla/5.0 (X11; FreeBSD amd64; rv:26.0) Gecko/20100101 Firefox/26.0" -ssl.certificates 0 -dump google.com/search?q=site:facebook.com+"$target"+AND+"$int1"+OR+"$int2"+OR+"$int3" > sfa.txt
+links2 -http.fake-user-agent "Mozilla/5.0 (X11; FreeBSD amd64; rv:26.0) Gecko/20100101 Firefox/26.0" -ssl.certificates 0 -dump google.es/search?q=site:facebook.com+"$target"+AND+"$int1"+OR+"$int2"+OR+"$int3" > sfa.txt
 
 cat sfa.txt | grep --color -e http
 cat sfa.txt | grep --color -e www.
@@ -344,9 +372,12 @@ rm la.txt
 echo " "
 
 
-echo -e "\e[00;31mSearching database and log files...\e[00m"
+echo -e "\e[00;31mSearch database and log files...\e[00m"
+echo "Insert ENTER for start..."
+read in23
+
 sleep 0.5
-links2 -http.fake-user-agent "Mozilla/5.0 (X11; FreeBSD amd64; rv:26.0) Gecko/20100101 Firefox/26.0" -ssl.certificates 0 -dump https://www.bing.com/search?q=site%3A$target+filetype%3Adat+|+log > datlog.txt
+links2 -http.fake-user-agent "Mozilla/5.0 (X11; FreeBSD amd64; rv:26.0) Gecko/20100101 Firefox/26.0" -ssl.certificates 0 -dump https://www.google.de/search?q=$target+filetype%3Alog+|+filetype%3Adat > datlog.txt
 sleep 0.2
 cat datlog.txt | grep --color -e http
 cat datlog.txt | grep --color -e www.
@@ -361,7 +392,7 @@ echo "\e[00;41                        \e[00m"
 echo " "
 sleep 2
 
-links2 -http.fake-user-agent "Mozilla/5.0 (X11; FreeBSD amd64; rv:26.0) Gecko/20100101 Firefox/26.0" -ssl.certificates 0 -dump google.com/search?q=site:"$target"+"default password" > dfp.txt
+links2 -http.fake-user-agent "Mozilla/5.0 (X11; FreeBSD amd64; rv:26.0) Gecko/20100101 Firefox/26.0" -ssl.certificates 0 -dump google.it/search?q=site:"$target"+"default password" > dfp.txt
 
 cat dfp.txt | grep --color -e http
 cat dfp.txt | grep --color -e www.
