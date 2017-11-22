@@ -21,7 +21,7 @@ echo -e "\e[01;34m--------------------------------------------------------------
 echo -e "OSINT tool for extract \e[01;36mInformations, \e[01;33mmetadata \e[00m \e[01;34mSocial media\e[00m tracking\e[00m and \e[00;31mprivacy threat\e[00m"
 echo -e "\e[01;34m________________________________________________________________________________\e[00m"
 echo " "
-echo -e "CODENAME: \e[01;46mCignonite\e[00m -- \e[00;31m Coded for privacy testing - The author decline any responsability for 
+echo -e "CODENAME: \e[01;46mSwan take control\e[00m -- \e[00;31m Coded for privacy testing - The author decline any responsability for 
 any illegal use of this tool\e[00m"
 echo " "
 bar
@@ -54,40 +54,7 @@ whois $target
 sleep 1
 
 echo " "
-echo -e "\e[01;34mSOCIAL MEDIA LINKS SEARCH\e[00m"
-echo "Insert ENTER for start... "
-
-echo " "
-read start234
-
-echo "Searching social links in the Website"
-
-wget --no-check-certificate -qO- $target > fs.html
-cat fs.html | egrep -o "(http|https):.*\">" | awk 'BEGIN {FS="\""};{print $1}' > sm.txt
-
-	echo "------------------------------------------"
-echo " " 
-sleep 2   		
-echo -e "\e[00;41mSOCIAL NETWORK LINKS\e[00m..."
-echo " "
-cat sm.txt | grep --color -E twitter
-echo " "
-cat sm.txt | grep --color -E plus.google.com
-echo " "
-cat sm.txt | grep --color -E facebook
-echo " "
-cat sm.txt | grep --color -E linkedin
-echo " "
-cat sm.txt | grep --color -E pinterest
-echo " "
-cat sm.txt | grep --color -E instagram
-echo " "
-cat sm.txt | grep --color -E youtube
-
-
-echo " "
-sleep 1
-echo -e "--->\e[00;34m20 more used words in the home page\e[00m"
+echo -e "--->\e[00;34m20 more used words in the home page (\e[00;31mBeta phase!\e[00;34m)\e[00m"
 sleep 1
 links2 -ssl.certificates 0 -dump $target > toppar
 echo " "
@@ -144,10 +111,6 @@ sed 's/\<to\>//g' toppar49 > toppar50
 sed 's/\<of\>//g' toppar50 > toppar51
 sed 's/\<will\>//g' toppar51 > toppar52
 sed 's/\<what\>//g' toppar52 > toppar53
-
-
-
-
 
 rm toppar2
 rm toppar3
@@ -342,6 +305,58 @@ exiftool * | grep --color -E Producer
 echo " "
 cd -
 echo " "
+
+echo " "
+echo -e "\e[01;34mSOCIAL MEDIA LINKS SEARCH\e[00m"
+echo "Insert ENTER for start... "
+
+echo " "
+read start234
+
+echo "Searching social links in the Website"
+
+wget --no-check-certificate -qO- $target > fs.html
+cat fs.html | egrep -o "(http|https):.*\">" | awk 'BEGIN {FS="\""};{print $1}' > sm.txt
+
+	echo "------------------------------------------"
+echo " " 
+sleep 1   		
+echo -e "\e[00;41mSOCIAL NETWORK LINKS in the website: \e[00m"
+echo " "
+cat sm.txt | grep --color -E twitter
+echo " "
+cat sm.txt | grep --color -E plus.google.com
+echo " "
+cat sm.txt | grep --color -E facebook
+echo " "
+cat sm.txt | grep --color -E linkedin
+echo " "
+cat sm.txt | grep --color -E pinterest
+echo " "
+cat sm.txt | grep --color -E instagram
+echo " "
+cat sm.txt | grep --color -E youtube
+
+
+echo " "
+echo -e "\e[01;32mSearching \e[01;31mInstagram \e[01;32mhashtags related\e[00m"
+echo " "
+links2 -http.fake-user-agent "Mozilla/5.0 (X11; FreeBSD amd64; rv:26.0) Gecko/20100101 Firefox/26.0" -dump lakako.com/searchtag/"$target" > lak.txt
+echo " "
+cat lak.txt | grep --color -E "#"
+echo " "
+rm lak.txt
+
+echo " "
+echo -e "\e[01;32mSearching \e[01;34mGoogle plus \e[01;32m related links\e[00m"
+echo " "
+
+links2 -http.fake-user-agent "Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.3) Gecko/2008092416 Firefox/3.0.3" -dump lakako.com/googleplus/search/"$target" > gpli.txt
+echo " "
+cat gpli.txt | grep -E https://
+rm gpli.txt
+echo " "
+
 echo -e "$target \e[00;31mSearch\e[00m in \e[00;34mFACEBOOK\e[00m \e[01;33mwith custom words of interest\e[00m"
 echo -e "\e[01;32mPlease insert 3 words of interest: \e[00m"
 echo "--- 1: "
@@ -354,6 +369,7 @@ echo " "
 sleep 2
 echo -e "\e[01;33mSearching with google dork\eè00m..."
 echo " "
+sleep 2
 links2 -http.fake-user-agent "Mozilla/5.0 (X11; FreeBSD amd64; rv:26.0) Gecko/20100101 Firefox/26.0" -ssl.certificates 0 -dump google.es/search?q=site:facebook.com+"$target"+AND+"$int1"+OR+"$int2"+OR+"$int3" > sfa.txt
 
 cat sfa.txt | grep --color -e http
