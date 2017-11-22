@@ -357,6 +357,17 @@ cat gpli.txt | grep -E https://
 rm gpli.txt
 echo " "
 
+echo " "
+echo -e "\e[01;39mSearch twitter and tw hastags links with \e[01;38mDUCKDUCKGO advanced search \e[00m"
+echo " "
+
+links2 -http.fake-user-agent "Mozilla/5.0 (X11; FreeBSD amd64; rv:26.0) Gecko/20100101 Firefox/26.0" -dump https://duckduckgo.com/html/?q="$target"+%2B%23+site%3Atwitter.com > duckse.txt
+
+sleep 0.3
+cat duckse.txt | grep -e "https://" -e "twitter.com/"
+
+echo " "
+
 echo -e "$target \e[00;31mSearch\e[00m in \e[00;34mFACEBOOK\e[00m \e[01;33mwith custom words of interest\e[00m"
 echo -e "\e[01;32mPlease insert 3 words of interest: \e[00m"
 echo "--- 1: "
