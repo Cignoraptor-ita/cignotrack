@@ -21,7 +21,7 @@ echo -e "\e[01;34m--------------------------------------------------------------
 echo -e "OSINT tool for extract \e[01;36mInformations, \e[01;33mmetadata \e[00m \e[01;34mSocial media\e[00m tracking\e[00m and \e[00;31mprivacy threat\e[00m"
 echo -e "\e[01;34m________________________________________________________________________________\e[00m"
 echo " "
-echo -e "CODENAME: \e[01;46mSwan take control\e[00m -- \e[00;31m Coded for privacy testing - The author decline any responsability for 
+echo -e "CODENAME: \e[01;46mThe swan empire\e[00m -- \e[00;31m Coded for privacy testing - The author decline any responsability for 
 any illegal use of this tool\e[00m"
 echo " "
 bar
@@ -369,6 +369,7 @@ cat duckse.txt | grep -e "https://" -e "twitter.com/"
 echo " "
 
 echo -e "$target \e[00;31mSearch\e[00m in \e[00;34mFACEBOOK\e[00m \e[01;33mwith custom words of interest\e[00m"
+echo -e "\e[01:32mEX: \e[00;36mEvent (\e[00;31mfor pretext)\e[00m"
 echo -e "\e[01;32mPlease insert 3 words of interest: \e[00m"
 echo "--- 1: "
 read int1
@@ -419,7 +420,7 @@ echo "\e[00;41                        \e[00m"
 echo " "
 sleep 2
 
-links2 -http.fake-user-agent "Mozilla/5.0 (X11; FreeBSD amd64; rv:26.0) Gecko/20100101 Firefox/26.0" -ssl.certificates 0 -dump google.it/search?q=site:"$target"+"default password" > dfp.txt
+links2 -http.fake-user-agent "Mozilla/5.0 (X11; FreeBSD amd64; rv:26.0) Gecko/20100101 Firefox/26.0" -ssl.certificates 0 -dump google.it/search?q=site:"$target"+"default password"+filetype%3Atxt+|+filetype%3Axls+|+"default password" > dfp.txt
 
 cat dfp.txt | grep --color -e http
 cat dfp.txt | grep --color -e www.
