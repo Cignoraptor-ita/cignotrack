@@ -8,7 +8,7 @@ Cignotrack have this features:
 - Extract and analyze the metadata of images and pdf documents
 - Extract organization and related emails - analyze words of interest about the organization
 - Social media tracking
-- Search for default password and sensitive files.
+- Search for default password (google dork) and sensitive files.
 
 Tool coded for security testing, the author decline any illegal use of this tool.
 
