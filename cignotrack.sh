@@ -420,7 +420,7 @@ echo "\e[00;41                        \e[00m"
 echo " "
 sleep 2
 
-links2 -http.fake-user-agent "Mozilla/5.0 (X11; FreeBSD amd64; rv:26.0) Gecko/20100101 Firefox/26.0" -ssl.certificates 0 -dump google.it/search?q=site:"$target"+"default password"+filetype%3Atxt+|+filetype%3Axls+|+"default password" > dfp.txt
+links2 -http.fake-user-agent "Mozilla/5.0 (X11; FreeBSD amd64; rv:26.0) Gecko/20100101 Firefox/26.0" -ssl.certificates 0 -dump google.it/search?q=site:"$target"+"default password"+filetype%3Atxt+|+filetype%3Axls+OR+filetype:doc+|+"default password" > dfp.txt
 
 cat dfp.txt | grep --color -e http
 cat dfp.txt | grep --color -e www.
