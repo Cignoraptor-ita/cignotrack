@@ -21,7 +21,7 @@ echo -e "\e[01;34m--------------------------------------------------------------
 echo -e "OSINT tool for extract \e[01;36mInformations, \e[01;33mmetadata \e[00m \e[01;34mSocial media\e[00m tracking\e[00m and \e[00;31mprivacy threat\e[00m"
 echo -e "\e[01;34m________________________________________________________________________________\e[00m"
 echo " "
-echo -e "CODENAME: \e[01;46mThe swan empire\e[00m -- \e[00;31m Coded for privacy testing - The author decline any responsability for 
+echo -e "CODENAME: \e[01;46mSuper swan\e[00m -- \e[00;31m Coded for privacy testing - The author decline any responsability for 
 any illegal use of this tool\e[00m"
 echo " "
 bar
@@ -358,13 +358,16 @@ rm gpli.txt
 echo " "
 
 echo " "
-echo -e "\e[01;39mSearch twitter and tw hastags links with \e[01;38mDUCKDUCKGO advanced search \e[00m"
+echo -e "\e[01;34mSearch associated twitter hastags\e[00m"
 echo " "
 
-links2 -http.fake-user-agent "Mozilla/5.0 (X11; FreeBSD amd64; rv:26.0) Gecko/20100101 Firefox/26.0" -dump https://duckduckgo.com/html/?q="$target"+%2B%23+site%3Atwitter.com > duckse.txt
+links2 -dump https://twitter.com/search?q=$target > twih.txt
+echo " "
+grep -Eio "#[a-zA-Z0-9./:-]+" twih.txt > dhash.txt
+cat dhash.txt
+rm twih.txt && rm dhash.txt
 
 sleep 0.3
-cat duckse.txt | grep -e "https://" -e "twitter.com/"
 
 echo " "
 
