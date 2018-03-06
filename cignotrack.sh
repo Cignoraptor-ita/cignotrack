@@ -21,7 +21,7 @@ echo -e "\e[01;34m--------------------------------------------------------------
 echo -e "OSINT tool for extract \e[01;36mInformations, \e[01;33mmetadata \e[00m \e[01;34mSocial media\e[00m tracking\e[00m and \e[00;31mprivacy threat\e[00m"
 echo -e "\e[01;34m________________________________________________________________________________\e[00m"
 echo " "
-echo -e "CODENAME: \e[01;46mSuper swan\e[00m -- \e[00;31m Coded for privacy testing - The author decline any responsability for 
+echo -e "CODENAME: \e[01;46mrage of the swan\e[00m -- \e[00;31m Coded for privacy testing - The author decline any responsability for 
 any illegal use of this tool\e[00m"
 echo " "
 bar
@@ -202,6 +202,10 @@ echo " "
 echo -e "\e[00;33mSTARTING EMAIL SPIDER\e[00m..."
 sleep 1.5
 
+wget --no-check-certificate -qO- $target > fs.html
+cat fs.html | egrep -o "(http|https):.*\">" | awk 'BEGIN {FS="\""};{print $1}' > sm.txt
+
+
 for line in `cat sm.txt`; do
 
 links2 -ssl.certificates 0 -dump $line | grep --color -o "[^:]*@$target"
@@ -315,8 +319,7 @@ read start234
 
 echo "Searching social links in the Website"
 
-wget --no-check-certificate -qO- $target > fs.html
-cat fs.html | egrep -o "(http|https):.*\">" | awk 'BEGIN {FS="\""};{print $1}' > sm.txt
+
 
 	echo "------------------------------------------"
 echo " " 
