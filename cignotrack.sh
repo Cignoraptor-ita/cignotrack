@@ -21,7 +21,7 @@ echo -e "\e[01;34m--------------------------------------------------------------
 echo -e "OSINT tool for extract \e[01;36mInformations, \e[01;33mmetadata \e[00m \e[01;34mSocial media\e[00m tracking\e[00m and \e[00;31mprivacy threat\e[00m"
 echo -e "\e[01;34m________________________________________________________________________________\e[00m"
 echo " "
-echo -e "CODENAME: \e[01;46mrage of the swan\e[00m -- \e[00;31m Coded for privacy testing - The author decline any responsability for 
+echo -e "CODENAME: \e[01;43mDevastating swan\e[00m -- \e[00;31m Coded for privacy testing - The author decline any responsability for 
 any illegal use of this tool\e[00m"
 echo " "
 bar
@@ -46,10 +46,33 @@ cat domin.txt | grep --color -oP 'Organization:.*$'
 echo " "
 rm domin.txt
 
-echo -e "Insert ENTER for start the whois \e[00;33mdatabase search\e[00m"
-read invio23
+echo -e "Informations from whois \e[00;33mdatabase search\e[00m"
+sleep 3
 
-whois $target
+whois $target > whois.txt
+echo " "
+echo -e "\e[00;38mCountry: \e[00m"
+cat whois.txt | grep -E "Country: +"
+echo " "
+echo -e "\e[00;33mCity: \e[00m"
+cat whois.txt | grep -Eio "Admin City: [a-zA-Z0-9]+"
+cat whois.txt | grep -Eio "Registrant City: [a-zA-Z0-9]+"
+cat whois.txt | grep -Eio "Tech City: [a-zA-Z0-9]+"
+cat whois.txt | grep -E "Street: +"
+echo " "
+echo -e "\e[00;35mPhone: \e[00m"
+echo " "
+cat whois.txt | grep -E "Phone: +"
+echo " "
+echo -e "\e[00;32mWhois email: \e[00m"
+cat whois.txt | grep -E "[a-zA-Z0-9]+@[a-zA-Z0-9]+.*"
+echo " "
+echo -e "Names: "
+cat whois.txt | grep -E "Name: +"
+echo " "
+
+rm whois.txt
+
 
 sleep 1
 
@@ -374,25 +397,8 @@ sleep 0.3
 
 echo " "
 
-echo -e "$target \e[00;31mSearch\e[00m in \e[00;34mFACEBOOK\e[00m \e[01;33mwith custom words of interest\e[00m"
-echo -e "\e[01:32mEX: \e[00;36mEvent (\e[00;31mfor pretext)\e[00m"
-echo -e "\e[01;32mPlease insert 3 words of interest: \e[00m"
-echo "--- 1: "
-read int1
-echo "--- 2: "
-read int2
-echo "--- 3: "
-read int3
-echo " "
+echo "\e[00;31m>>>>>>> \e[01;33mFACEBOOK SEARCH IS UNDER BETTER DEVELOPMENT\e[00m"
 sleep 2
-echo -e "\e[01;33mSearching with google dork\eè00m..."
-echo " "
-sleep 2
-links2 -http.fake-user-agent "Mozilla/5.0 (X11; FreeBSD amd64; rv:26.0) Gecko/20100101 Firefox/26.0" -ssl.certificates 0 -dump google.es/search?q=site:facebook.com+"$target"+AND+"$int1"+OR+"$int2"+OR+"$int3" > sfa.txt
-
-cat sfa.txt | grep --color -e http
-cat sfa.txt | grep --color -e www.
-rm sfa.txt
 
 echo " "
 echo -e "Some Linkedin people links \e[00;31massociated\e[00m with organization target"
@@ -401,12 +407,17 @@ sleep 2
 links2 -dump google.com/search?q=site:linkedin.com+"$target" > la.txt
 
 cat la.txt | grep --color -e http
-cat la.txt | grep --color -e www.
+cat la.txt | grep --color -e "www."
 rm la.txt
 echo " "
 
+echo "\e[00;31mSearch for header response "
+sleep 0.5
 
-echo -e "\e[00;31mSearch database and log files...\e[00m"
+curl -L -I --silent --max-time 8 "https://$target/" | grep "@"
+echo " "
+
+echo -e "\e[00;31mSearch log-database files...\e[00m"
 echo "Insert ENTER for start..."
 read in23
 
@@ -414,7 +425,7 @@ sleep 0.5
 links2 -http.fake-user-agent "Mozilla/5.0 (X11; FreeBSD amd64; rv:26.0) Gecko/20100101 Firefox/26.0" -ssl.certificates 0 -dump https://www.google.de/search?q=$target+filetype%3Alog+|+filetype%3Adat > datlog.txt
 sleep 0.2
 cat datlog.txt | grep --color -e http
-cat datlog.txt | grep --color -e www.
+cat datlog.txt | grep --color -e "www."
 rm datlog.txt
 echo " "
 
