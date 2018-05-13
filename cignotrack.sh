@@ -21,7 +21,7 @@ echo -e "\e[01;34m--------------------------------------------------------------
 echo -e "OSINT tool for extract \e[01;36mInformations, \e[01;33mmetadata \e[00m \e[01;34mSocial media\e[00m tracking\e[00m and \e[00;31mprivacy threat\e[00m"
 echo -e "\e[01;34m________________________________________________________________________________\e[00m"
 echo " "
-echo -e "CODENAME: \e[01;43mDevastating swan\e[00m -- \e[00;31m Coded for privacy testing - The author decline any responsability for 
+echo -e "CODENAME: \e[01;43mVENI, VIDI , VICI\e[00m -- \e[00;31m Coded for privacy testing - The author decline any responsability for 
 any illegal use of this tool\e[00m"
 echo " "
 bar
@@ -241,10 +241,9 @@ sleep 2
 links2 -http.fake-user-agent "Mozilla/5.0 (X11; FreeBSD amd64; rv:26.0) Gecko/20100101 Firefox/26.0" -ssl.certificates 0 -dump google.it/search?q=site:$target+AND+"%40gmail.com" | grep --color -o "[^:]*@gmail.com"
 
 echo " "
-sleep 1
+sleep 0.5
 echo -e "\e[01;33mSearch and EXTRACTION OF\e[00m images in the website..."
-echo "Insert ENTER  for start..."
-read ent5670
+sleep 2
 
 echo " "
 sleep 1
@@ -262,7 +261,7 @@ wget --user-agent="Mozilla/5.0 (X11; FreeBSD amd64; rv:26.0) Gecko/20100101 Fire
 -P images-analysis $target
 
 
-#Extact Metadata con Exiftool
+#Extract Metadata con Exiftool
 
 cd images-analysis
 echo " "
@@ -300,11 +299,10 @@ cd -
 
 sleep 1
 echo -e "\e[01;33mSearch and EXTRACTION OF\e[00m PDF files from Bing results..."
-echo "Insert ENTER for start..."
-read inv378
+sleep 3
 
 echo " "
-sleep 1
+
 
 mkdir -p pdf-analysis
 
@@ -335,10 +333,10 @@ echo " "
 
 echo " "
 echo -e "\e[01;34mSOCIAL MEDIA LINKS SEARCH\e[00m"
-echo "Insert ENTER for start... "
+sleep 3
 
 echo " "
-read start234
+
 
 echo "Searching social links in the Website"
 
@@ -401,10 +399,34 @@ echo "\e[00;31m>>>>>>> \e[01;33mFACEBOOK SEARCH IS UNDER BETTER DEVELOPMENT\e[00
 sleep 2
 
 echo " "
+echo -e "\e[01;34mSocial media tracking for domain like user... \e[00m"
+echo " "
+echo "$target" > dap.txt
+sed 's/\..*$//' dap.txt > clean.txt
+rm dap.txt
+userc=$(cat clean.txt)
+
+echo "https:twitter.com/$userc/" > listautenti.txt
+echo "https://youtube.com/user/$userc/" >> listautenti.txt
+echo "https://github.com/$userc/" >> listautenti.txt
+echo "https://instagram.com/$userc/" >> listautenti.txt
+echo "https://pinterest.com/$userc/" >> listautenti.txt
+echo "https://vimeo.com/$userc/" >> listautenti.txt
+echo "https://$userc.tumblr.com" >> listautenti.txt
+
+for line in `cat listautenti.txt`; do
+echo -e "\e[01;32m$line\e[00m"
+curl -o /dev/null --silent --head --write-out '%{http_code}\n' -L $line
+sleep 1
+done
+
+rm clean.txt && rm listautenti.txt
+
+
 echo -e "Some Linkedin people links \e[00;31massociated\e[00m with organization target"
 sleep 2
 
-links2 -dump google.com/search?q=site:linkedin.com+"$target" > la.txt
+links2 -dump google.nl/search?q=site:linkedin.com+"$target" > la.txt
 
 cat la.txt | grep --color -e http
 cat la.txt | grep --color -e "www."
@@ -417,9 +439,30 @@ sleep 0.5
 curl -L -I --silent --max-time 8 "https://$target/" | grep "@"
 echo " "
 
+echo -e "\e[00;33mSearching for interesting files: \e[00m"
+echo " "
+echo "http://$target:80/robots.txt" > intere.txt
+echo "http://$target:80/sitemap.xml.gz" >> intere.txt
+echo "http://$target:80/sitemap.xml" >> intere.txt
+echo "http://$target/web-console/" >> intere.txt
+echo "http://$target:80/admin-console/" >> intere.txt
+echo "http://$target:80/jmx-console/" >> intere.txt
+echo "http://$target:80/server-status" >> intere.txt
+echo "http://$target:80/elmah.axd" >> intere.txt
+echo "http://$target:80/test.php" >> intere.txt
+echo "http://$target:80/phpinfo.php" >> intere.txt
+echo "http://$target:80/crossdomain.xml" >> intere.txt
+
+for line in `cat intere.txt`; do
+
+echo -e "\e[01;32m$line\e[00m"
+curl -o /dev/null --silent --head --write-out '%{http_code}\n' -L $line
+sleep 1
+done
+
+
 echo -e "\e[00;31mSearch log-database files...\e[00m"
-echo "Insert ENTER for start..."
-read in23
+sleep 3
 
 sleep 0.5
 links2 -http.fake-user-agent "Mozilla/5.0 (X11; FreeBSD amd64; rv:26.0) Gecko/20100101 Firefox/26.0" -ssl.certificates 0 -dump https://www.google.de/search?q=$target+filetype%3Alog+|+filetype%3Adat > datlog.txt
@@ -437,11 +480,11 @@ echo "\e[00;41                        \e[00m"
 echo " "
 sleep 2
 
-links2 -http.fake-user-agent "Mozilla/5.0 (X11; FreeBSD amd64; rv:26.0) Gecko/20100101 Firefox/26.0" -ssl.certificates 0 -dump google.it/search?q=site:"$target"+"default password"+filetype%3Atxt+|+filetype%3Axls+OR+filetype:doc+|+"default password" > dfp.txt
+links2 -http.fake-user-agent "Mozilla/5.0 (X11; FreeBSD amd64; rv:26.0) Gecko/20100101 Firefox/26.0" -ssl.certificates 0 -dump google.it/search?q=site:"$target"+"default password"+filetype%3Atxt+|+filetype%3Axls+OR+filetype:doc+|+"password"+"password" > dfp.txt
 
 cat dfp.txt | grep --color -e http
 cat dfp.txt | grep --color -e www.
-rm dfp.txt
+rm dfp.txt && rm intere.txt
 
 
 
