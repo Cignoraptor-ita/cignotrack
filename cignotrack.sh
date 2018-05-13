@@ -72,9 +72,34 @@ cat whois.txt | grep -E "Name: +"
 echo " "
 
 rm whois.txt
+sleep 0.5
+echo "$target" > dap.txt
+sed 's/\..*$//' dap.txt > clean.txt
+rm dap.txt
+userc=$(cat clean.txt)
 
+echo -e "\e[01;33mRapid hostility analysis against the target: \e[00m"
+echo -e "(\e[00;33mJust Italian and English phrases\e[00m)"
+sleep 2
 
-sleep 1
+links2 -dump https://twitter.com/search?l=it"&"q=$userc+odio+OR+schifo+OR+vergogna > hos1.txt
+sleep 0.7
+links2 -dump https://twitter.com/search?l=en"&"q=$userc+hate+OR+shit+OR+shame >> hos1.txt
+sleep 0.3
+links2 -dump https://twitter.com/search?l=it"&"q=$target+odio+OR+schifo+OR+vergogna >> hos1.txt
+sleep 0.4
+links2 -dump https://twitter.com/search?l=en"&"q=$target+hate+OR+shit+OR+shame >> hos1.txt
+
+cat hos1.txt | grep -e "schifo" -e "vergogna" -e "odio" > triste1
+cat hos1.txt | grep -e "hate" -e "shame" -e "shit" > triste2
+
+cat triste1 triste2 > triste
+
+echo " "
+echo -e "\e[00;31m============\e[00m"
+echo -e "\e[01;33mNegative phrases against $userc and $target\e[00m" && cat triste | wc -l 
+sleep 2
+
 
 echo " "
 echo -e "--->\e[00;34m20 more used words in the home page (\e[00;31mBeta phase!\e[00;34m)\e[00m"
@@ -401,10 +426,6 @@ sleep 2
 echo " "
 echo -e "\e[01;34mSocial media tracking for domain like user... \e[00m"
 echo " "
-echo "$target" > dap.txt
-sed 's/\..*$//' dap.txt > clean.txt
-rm dap.txt
-userc=$(cat clean.txt)
 
 echo "https:twitter.com/$userc/" > listautenti.txt
 echo "https://youtube.com/user/$userc/" >> listautenti.txt
