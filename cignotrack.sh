@@ -433,7 +433,7 @@ cat la.txt | grep --color -e "www."
 rm la.txt
 echo " "
 
-echo "\e[00;31mSearch for header response "
+echo -e "\e[00;31mSearch for header response "
 sleep 0.5
 
 curl -L -I --silent --max-time 8 "https://$target/" | grep "@"
@@ -465,7 +465,7 @@ echo -e "\e[00;31mSearch log-database files...\e[00m"
 sleep 3
 
 sleep 0.5
-links2 -http.fake-user-agent "Mozilla/5.0 (X11; FreeBSD amd64; rv:26.0) Gecko/20100101 Firefox/26.0" -ssl.certificates 0 -dump https://www.google.de/search?q=$target+filetype%3Alog+|+filetype%3Adat > datlog.txt
+links2 -http.fake-user-agent "Mozilla/5.0 (X11; FreeBSD amd64; rv:26.0) Gecko/20100101 Firefox/26.0" -ssl.certificates 0 -dump https://www.google.de/search?q=$target+filetype%3Alog+filetype%3Adat > datlog.txt
 sleep 0.2
 cat datlog.txt | grep --color -e http
 cat datlog.txt | grep --color -e "www."
@@ -480,7 +480,7 @@ echo "\e[00;41                        \e[00m"
 echo " "
 sleep 2
 
-links2 -http.fake-user-agent "Mozilla/5.0 (X11; FreeBSD amd64; rv:26.0) Gecko/20100101 Firefox/26.0" -ssl.certificates 0 -dump google.it/search?q=site:"$target"+"default password"+filetype%3Atxt+|+filetype%3Axls+OR+filetype:doc+|+"password"+"password" > dfp.txt
+links2 -http.fake-user-agent "Mozilla/5.0 (X11; FreeBSD amd64; rv:26.0) Gecko/20100101 Firefox/26.0" -ssl.certificates 0 -dump google.it/search?q=site:"$target"+"default password"+AND+"password"+"secret key"+AND+"password" > dfp.txt
 
 cat dfp.txt | grep --color -e http
 cat dfp.txt | grep --color -e www.
