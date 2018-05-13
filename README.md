@@ -6,8 +6,8 @@ Cignotrack have this features:
 
 - Read whois database and IP informations
 - Rapid hostility - haters analysis against the target
-- Extract and analyze the metadata of images and pdf documents
-- Extract organization and related emails - analyze words of interest about the organization
+- Extract and analyze the target images and documents metadata
+- Search target emails and analyze words of interest about the organization
 - Social media tracking
 - Search for sensitive files.
 
