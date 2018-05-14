@@ -41,7 +41,7 @@ echo -e "\e[00;31mSearch log-database files...\e[00m"
 sleep 2
 
 sleep 0.5
-links2 -http.fake-user-agent "Mozilla/5.0 (X11; FreeBSD amd64; rv:26.0) Gecko/20100101 Firefox/26.0" -ssl.certificates 0 -dump https://www.google.de/search?q=$target+filetype%3Alog+filetype%3Adat > datelog.txt
+links2 -http.fake-user-agent "Mozilla/5.0 (Linux; Android 6.0.1; SM-G920V Build/MMB29K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.98 Mobile Safari/537.36" -ssl.certificates 0 -dump https://www.google.de/search?q=$target+filetype%3Alog+filetype%3Adat > datelog.txt
 sleep 2
 links2 -http.fake-user-agent "Mozilla/5.0 (X11; FreeBSD amd64; rv:26.0) Gecko/20100101 Firefox/26.0" -ssl.certificates 0 -dump https://www.google.es/search?q=site:$target+intitle:"index+of" > ind.txt
 sleep 0.2
@@ -54,7 +54,7 @@ rm datlog.txt
 echo " "
 echo -e "\e[01;33mSearch Whatsapp images leaks correlated with the target\e[00m"
 sleep 3
-links2 -http.fake-user-agent "Mozilla/5.0 (X11; FreeBSD amd64; rv:26.0) Gecko/20100101 Firefox/26.0" -ssl.certificates 0 -dump https://www.google.it/search?q="Whatsapp"+data+$target+intitle:"index+of" > whats.txt
+links2 -http.fake-user-agent "Mozilla/5.0 (Linux; Android 6.0.1; Nexus 6P Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.83 Mobile Safari/537.36" -ssl.certificates 0 -dump https://www.google.it/search?q="Whatsapp"+data+$target+intitle:"index+of" > whats.txt
 sleep 0.2
 cat whats.txt | grep --color -e "http://"
 cat whats.txt | grep --color -e "www."
