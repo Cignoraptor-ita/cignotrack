@@ -22,7 +22,8 @@ whois (sudo apt-get install whois)
 exiftool (sudo apt-get install libimage-exiftool-perl)
 sendemail (sudo apt-get install sendemail)
 
-Usage: bash cignotrack.sh   WARNING: Not use a url like target but a domain!
+Usage: bash cignotrack.sh   
+WARNING: Not use a url like target but a domain!
 PS: DOMAIN!!!
 Exemple: organizzazione.net -----> This is a domain!
 
