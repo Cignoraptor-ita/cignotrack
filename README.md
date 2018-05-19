@@ -27,4 +27,4 @@ WARNING: Not use a url like target but a domain!
 PS: DOMAIN!!!
 Exemple: organizzazione.net -----> This is a domain!
 
-Tool coded for security test, The author decline any illegal use of this tool, use at your own risk.
+Tool coded for security test, The author decline any responsability for any illegal use of this tool, use at your own risk.
