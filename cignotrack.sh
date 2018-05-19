@@ -18,14 +18,14 @@ echo -e "\e[00;44m______________________\e[00mCIGNOTRACK\e[00;44m_______________
 echo " "
 
 echo -e "\e[01;34m--------------------------------------------------------------------------------\e[00m"
-echo -e "OSINT tool for extract \e[01;36mInformations, \e[01;33mmetadata \e[00m \e[01;34mSocial media\e[00m tracking\e[00m and \e[00;31mprivacy threat\e[00m"
+echo -e "Corporate espionage tool for testing privacy and security\e[00m"
 echo -e "\e[01;34m________________________________________________________________________________\e[00m"
 echo " "
 echo -e "CODENAME: \e[01;43mINVICTUS MANEO v0.2\e[00m -- \e[00;31m Coded for privacy testing - The author decline any responsability for 
 any illegal use of this tool\e[00m"
 echo " "
 bar
-echo -e "\e[01;34mcoded by Cignoraptor\e[00m --- contact for help or suggestions > \e[00;34mroot4sec6per3@openmailbox.org\e[00m"
+echo -e "\e[01;34mcoded by Cignoraptor\e[00m --- contact for advanced versions or suggestions > \e[00;34mroot4sec6per3@openmailbox.org\e[00m"
 echo " "
 echo "TARGET DOMAIN ... Example: domain.org"
 read target
