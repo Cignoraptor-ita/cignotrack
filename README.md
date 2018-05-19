@@ -3,7 +3,7 @@
 Corporate espionage tool for testing privacy and security 
 using OSINT and social engineering.
 
-Cignotrack have this features:
+Cignotrack has this features:
 
 - Read whois database and IP informations
 - Rapid hostility - haters analysis against the target
