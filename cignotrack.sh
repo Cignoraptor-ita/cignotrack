@@ -21,7 +21,7 @@ echo -e "\e[01;34m--------------------------------------------------------------
 echo -e "OSINT tool for extract \e[01;36mInformations, \e[01;33mmetadata \e[00m \e[01;34mSocial media\e[00m tracking\e[00m and \e[00;31mprivacy threat\e[00m"
 echo -e "\e[01;34m________________________________________________________________________________\e[00m"
 echo " "
-echo -e "CODENAME: \e[01;43mINVICTUS MANEO v0.1\e[00m -- \e[00;31m Coded for privacy testing - The author decline any responsability for 
+echo -e "CODENAME: \e[01;43mINVICTUS MANEO v0.2\e[00m -- \e[00;31m Coded for privacy testing - The author decline any responsability for 
 any illegal use of this tool\e[00m"
 echo " "
 bar
@@ -41,7 +41,7 @@ rm dap.txt
 echo " "
 PS3="Choose an option:"
 
-select opt in "WHOIS AND IP INFORMATION" "HOSTILITY-HATERS ANALYSIS" "EMAIL DISCOVERY" "IMAGES DISCOVERY AND ANALYSIS" "DOCUMENTS DISCOVERY AND ANALYSIS" "SOCIAL MEDIA TRACKING" "SENSITIVE FILES SEARCH" "RESTART"
+select opt in "WHOIS AND IP INFORMATION" "HOSTILITY-HATERS ANALYSIS" "EMAIL DISCOVERY" "IMAGES DISCOVERY AND ANALYSIS" "DOCUMENTS DISCOVERY AND ANALYSIS" "SOCIAL MEDIA TRACKING" "SENSITIVE FILES SEARCH" "SOCIAL ENGINEERING TEST" "RESTART"
 do
     case "$opt" in
         'WHOIS AND IP INFORMATION')
@@ -64,6 +64,11 @@ bash hostility.sh
           ;;
           'SENSITIVE FILES SEARCH')
           bash fise.sh
+          ;;
+          'SOCIAL ENGINEERING TEST')
+          cd se
+          sudo bash avviascam.sh
+          cd - >> /dev/null
           ;;
           'RESTART')
           rm ricorda.txt && rm clean.txt
