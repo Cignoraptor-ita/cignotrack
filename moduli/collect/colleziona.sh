@@ -12,7 +12,7 @@ done
 
 echo " "
 
-echo -e "\e[01;33mIn thisthe social engineering cignotrack module, you can test human security in: "
+echo -e "\e[01;33mIn this social engineering cignotrack module, you can test human security in: "
 echo " "
 echo -e "\e[01;34mFind target OS and collect possible email and password style\e[00m"
 echo " "
