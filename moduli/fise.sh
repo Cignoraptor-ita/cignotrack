@@ -24,7 +24,31 @@ echo "http://$target:80/crossdomain.xml" >> intere.txt
 for line in `cat intere.txt`; do
 
 echo -e "\e[01;32m$line\e[00m"
-curl -o /dev/null --silent --head --write-out '%{http_code}\n' -L $line
+curl -o /dev/null --silent --head --write-out '%{http_code}\n' -L $line > status.txt
+status=$(cat status.txt)
+
+if [[ $status = "200" ]]
+then
+echo -e "\e[01;33mFile exist!\e[00m"
+
+elif [[ $status = "403" ]]
+then
+echo -e "\e[01;38mFile access is Forbidden\e[00m"
+
+elif [[ $status = "301" ]]
+then
+echo -e "\e[01;38mFile is moved\e[00m"
+
+elif [[ $status = "400" ]]
+then
+echo -e "Status 400 ---> \e[01;38mFile not found\e[00m"
+
+else
+
+echo -e "\e[01;39mFile not exist or there is a problem to access it\e[00m"
+fi
+
+
 sleep 1
 done
 
