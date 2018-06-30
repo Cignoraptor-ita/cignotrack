@@ -21,7 +21,7 @@ echo -e "\e[01;34m--------------------------------------------------------------
 echo -e "Corporate espionage tool for testing privacy and security\e[00m"
 echo -e "\e[01;34m________________________________________________________________________________\e[00m"
 echo " "
-echo -e "CODENAME: \e[01;43mINVICTUS MANEO v0.5\e[00m -- \e[00;31m Coded for privacy testing - The author decline any responsability for 
+echo -e "CODENAME: \e[01;43mINVICTUS MANEO v0.7\e[00m -- \e[00;31m Coded for privacy testing - The author decline any responsability for 
 any illegal use of this tool\e[00m"
 echo " "
 bar
@@ -41,10 +41,10 @@ rm dap.txt
 echo " "
 PS3="Choose an option:"
 
-select opt in "WHOIS AND IP INFORMATION" "HOSTILITY-HATERS ANALYSIS" "EMAIL DISCOVERY" "IMAGES DISCOVERY AND ANALYSIS" "DOCUMENTS DISCOVERY AND ANALYSIS" "SOCIAL MEDIA TRACKING" "SENSITIVE FILES SEARCH" "SOCIAL ENGINEERING TEST" "RESTART"
+select opt in "WHOIS-IP-TECHNOLOGIES DISCOVER" "HOSTILITY-HATERS ANALYSIS" "EMAIL DISCOVERY" "IMAGES DISCOVERY AND ANALYSIS" "DOCUMENTS DISCOVERY AND ANALYSIS" "SOCIAL MEDIA TRACKING" "SENSITIVE FILES SEARCH" "SOCIAL ENGINEERING TEST" "RESTART"
 do
     case "$opt" in
-        'WHOIS AND IP INFORMATION')
+        'WHOIS-IP-TECHNOLOGIES DISCOVER')
 bash whoiseip.sh
      ;;
      'HOSTILITY-HATERS ANALYSIS')
