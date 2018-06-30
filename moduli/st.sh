@@ -82,17 +82,55 @@ echo " "
 echo -e "\e[01;34mSocial media tracking for domain like user... \e[00m"
 echo " "
 
-echo "https:twitter.com/$userc/" > listautenti.txt
+echo "https://twitter.com/$userc/" > listautenti.txt
 echo "https://youtube.com/user/$userc/" >> listautenti.txt
 echo "https://github.com/$userc/" >> listautenti.txt
 echo "https://instagram.com/$userc/" >> listautenti.txt
 echo "https://pinterest.com/$userc/" >> listautenti.txt
 echo "https://vimeo.com/$userc/" >> listautenti.txt
+echo "https://facebook.com/$userc" >> listautenti.txt
 echo "https://$userc.tumblr.com" >> listautenti.txt
 
 for line in `cat listautenti.txt`; do
 echo -e "\e[01;32m$line\e[00m"
-curl -o /dev/null --silent --head --write-out '%{http_code}\n' -L $line
+curl -A "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_4) AppleWebKit/601.5.17 (KHTML, like Gecko) Version/9.1 Safari/601.5.17" -o /dev/null --silent --head --write-out '%{http_code}\n' -L $line > status.txt
+
+status=$(cat status.txt)
+
+if [[ $status = "200" ]]
+then
+echo -e "\e[01;33mUser exist!\e[00m"
+
+elif [[ $status = "403" ]]
+then
+echo -e "\e[01;38mAccess Forbidden\e[00m"
+
+elif [[ $status = "301" ]]
+then
+echo -e "\e[01;38mFile is moved\e[00m"
+
+elif [[ $status = "400" ]]
+then
+echo -e "Status 400 ---> \e[01;38mNot found or error\e[00m"
+
+elif [[ $status = "405" ]]
+then
+echo -e "Status 405 ---> \e[01;38mFirewalled \e[00;31m :-( \e[00m"
+
+else
+
+echo -e "\e[01;39mUser not exist or there is a problem to access it\e[00m"
+
+fi
+
+
+echo " "
+sleep 0.5
+done
+
+
+
+
 sleep 1
 done
 
@@ -105,9 +143,25 @@ sleep 2
 
 links2 -dump google.nl/search?q=site:linkedin.com+"$target" > la.txt
 
-cat la.txt | grep --color -e http
-cat la.txt | grep --color -e "www."
+cat la.txt | grep --color "http://" > lah.txt
+cat lah.txt | grep -Eio "https://[a-zA-Z0-9./:-]+"
+rm lah.txt
+
 sleep 0.3
 rm fs.html && rm sm.txt
 rm la.txt
+echo " "
+echo -e "\e[01;36mSome Facebook links associated \e[00;33m(using google hacks)\e[00m"
+sleep 2
+echo " "
+
+links2 -dump google.es/search?q=site:facebook.com+AND+"$userc"+"$userc"+"$userc" > socialfb.txt
+
+echo "LINKS"
+echo " "
+echo -e "\e[01;34mFACEBOOK\e[00m"
+cat socialfb.txt | grep "https://" > fbhttps.txt
+cat fbhttps.txt | grep -Eio "https://[a-zA-Z0-9./:-]+"
+rm fbhttps.txt
+
 echo " "
