@@ -47,7 +47,7 @@ rm whois.txt
 echo " "
 sleep 0.5
 echo -e "\e[01;33mDiscover technologies used in the website\e[00m"
-echo -e "\e[00;31mBETA! \e[00;33mnow using allora record search\e[00m"
+echo -e "\e[00;31mBETA! \e[00;33mfor now using allora record search\e[00m"
 sleep 1.5
 echo " "
 
