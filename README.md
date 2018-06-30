@@ -5,7 +5,7 @@ using OSINT and social engineering.
 
 Cignotrack has this features:
 
-- Read whois database and IP informations
+- Discover whois, IP and technologies related informations
 - Rapid hostility - haters analysis against the target
 - Extract and analyze the target images and documents metadata
 - Search target emails and social media tracking
