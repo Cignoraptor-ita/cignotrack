@@ -40,11 +40,11 @@ cat sm.txt | grep --color -E youtube
 
 
 echo " "
-echo -e "\e[01;32mSearching \e[01;31mInstagram \e[01;32mhashtags related\e[00m"
+echo -e "\e[01;32mSearching \e[01;31mInstagram \e[01;32mpeople related\e[00m"
 echo " "
-links2 -http.fake-user-agent "Mozilla/5.0 (X11; FreeBSD amd64; rv:26.0) Gecko/20100101 Firefox/26.0" -dump lakako.com/searchtag/"$target" > lak.txt
+links2 -http.fake-user-agent "Mozilla/5.0 (X11; FreeBSD amd64; rv:26.0) Gecko/20100101 Firefox/26.0" -dump https://web.stagram.com/search?query=$target > lak.txt
 echo " "
-cat lak.txt | grep --color -E "#"
+cat lak.txt | grep --color -E "@"
 echo " "
 sleep 0.2
 rm lak.txt
@@ -58,6 +58,8 @@ echo " "
 cat gpli.txt | grep -E https://
 sleep 0.2
 rm gpli.txt
+echo " "
+echo -e "\e[00;31mAsset may be broken\e[00m"
 echo " "
 
 echo " "
@@ -75,7 +77,7 @@ rm twih.txt && rm dhash.txt
 
 echo " "
 
-echo "\e[00;31m>>>>>>> \e[01;33mFACEBOOK SEARCH IS UNDER BETTER DEVELOPMENT\e[00m"
+echo -e "\e[00;31m>>>>>>> \e[01;33mFACEBOOK SEARCH IS UNDER BETTER DEVELOPMENT\e[00m"
 sleep 2
 
 echo " "
@@ -128,11 +130,6 @@ echo " "
 sleep 0.5
 done
 
-
-
-
-sleep 1
-done
 
 rm clean.txt && rm listautenti.txt
 
