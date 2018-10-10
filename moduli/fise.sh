@@ -84,10 +84,10 @@ cat whats.txt | grep --color -e "http://"
 cat whats.txt | grep --color -e "www."
 rm whats.txt
 
-echo -e "\e[01:42m                    \e[00m"
+echo -e "\e[01;42m                    \e[00m"
 echo " "
 echo "Ok... hoping google it's not blocking... now will start a dps (default password search)"
-echo "\e[00;41                        \e[00m"
+echo "\e[00;41m                        \e[00m"
 echo " "
 sleep 2
 
