@@ -72,6 +72,7 @@ sleep 0.2
 cat datelog.txt ind.txt > datlog.txt
 sleep 0.2
 cat datlog.txt | grep --color -e "http://"
+cat datlog.txt | grep --color -e "https://"
 cat datlog.txt | grep --color -e "www."
 sleep 0.5
 rm datlog.txt
@@ -81,6 +82,7 @@ sleep 3
 links2 -http.fake-user-agent "Mozilla/5.0 (Linux; Android 6.0.1; Nexus 6P Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.83 Mobile Safari/537.36" -ssl.certificates 0 -dump https://www.google.es/search?q="Whatsapp Databases"+$target+intitle:"index+of" > whats.txt
 sleep 0.2
 cat whats.txt | grep --color -e "http://"
+cat whats.txt | grep --color -e "https://"
 cat whats.txt | grep --color -e "www."
 rm whats.txt
 
@@ -95,6 +97,7 @@ links2 -http.fake-user-agent "Mozilla/5.0 (X11; FreeBSD amd64; rv:26.0) Gecko/20
 
 echo -e "\e[00;34mPages with invite to chat: \e[00m"
 cat chatse.txt | grep --color -e "http://"
+cat chatse.txt | grep --color -e "https://"
 cat chatse.txt | grep --color -e "www."
 echo " "
 rm chatse.txt
