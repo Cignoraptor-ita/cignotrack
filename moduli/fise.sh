@@ -76,10 +76,11 @@ grep --color -w -e "temporary access" -e "temporary password" fs.html
 grep --color -w -e "accesso temporaneo" -e "password temporanea" fs.html
 
 grep --color -e "Default password" -e "Debug" fs.html
+grep --color -w -e "<!--" fs.html
 grep --color -w -e "Temporary access" -e "Temporary password" fs.html
 grep --color -w -e "Accesso temporaneo" -e "Password temporanea" fs.html
 
-rm smt.txt && fs.html && rm out
+rm smt.txt && rm fs.html && rm out
 
 echo "--------------"
 echo " "
