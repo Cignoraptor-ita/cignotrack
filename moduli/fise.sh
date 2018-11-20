@@ -84,17 +84,21 @@ echo " "
 
 echo -e "\e[00;33mSearching for interesting files: \e[00m"
 echo " "
-echo "http://$target:80/robots.txt" > intere.txt
-echo "http://$target:80/sitemap.xml.gz" >> intere.txt
-echo "http://$target:80/sitemap.xml" >> intere.txt
+echo "http://$target/robots.txt" > intere.txt
+echo "http://$target/sitemap.xml.gz" >> intere.txt
+echo "http://$target/sitemap.xml" >> intere.txt
 echo "http://$target/web-console/" >> intere.txt
-echo "http://$target:80/admin-console/" >> intere.txt
-echo "http://$target:80/jmx-console/" >> intere.txt
-echo "http://$target:80/server-status" >> intere.txt
-echo "http://$target:80/elmah.axd" >> intere.txt
-echo "http://$target:80/test.php" >> intere.txt
-echo "http://$target:80/phpinfo.php" >> intere.txt
-echo "http://$target:80/crossdomain.xml" >> intere.txt
+echo "http://$target/admin-console/" >> intere.txt
+echo "http://$target/jmx-console/" >> intere.txt
+echo "http://$target/server-status" >> intere.txt
+echo "http://$target/elmah.axd" >> intere.txt
+echo "http://$target/test.php" >> intere.txt
+echo "http://$target/phpinfo.php" >> intere.txt
+echo "http://$target/crossdomain.xml" >> intere.txt
+echo "http://$target/test.html" >> intere.txt
+echo "http://$target/test" >> intere.txt
+echo "http://$target/login" >> intere.txt
+echo "http://$target/old.aspx" >> intere.txt
 
 for line in `cat intere.txt`; do
 
