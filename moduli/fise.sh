@@ -33,6 +33,7 @@ grep --color -e "<meta" -e "<META" out
 echo "------ "
 echo " "
 
+sleep 1
 echo -e "\e[01;33mSearch for hidden fields\e[00m: "
 echo "------ "
 grep --color '<input type="hidden"' out
@@ -42,6 +43,7 @@ echo " "
 echo -e "\e[01;33mSearching for default passwords and debug comments\e[00m: "
 echo "------ "
 grep --color -e "default password" -e "debug" out
+grep --color -w -e "<!--" out
 grep --color -w -e "temporary access" -e "temporary password" out
 grep --color -w -e "accesso temporaneo" -e "password temporanea" out
 
