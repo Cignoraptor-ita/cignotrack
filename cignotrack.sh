@@ -21,12 +21,29 @@ echo -e "\e[01;34m--------------------------------------------------------------
 echo -e "Corporate espionage tool for testing privacy and security\e[00m"
 echo -e "\e[01;34m________________________________________________________________________________\e[00m"
 echo " "
-echo -e "CODENAME: \e[01;43mCanto del cigno 0.1\e[00m -- \e[00;31m Coded for privacy testing - The author decline any responsability for 
+echo -e "CODENAME: \e[01;43mCanto del cigno 0.2\e[00m -- \e[00;31m Coded for privacy testing - The author decline any responsability for 
 any illegal use of this tool\e[00m"
 echo " "
 bar
 echo -e "\e[01;34mcoded by Cignoraptor\e[00m --- contact for advanced versions or suggestions > \e[00;34mroot4sec6per3@openmailbox.org\e[00m"
 echo " "
+
+echo -e "\e[00;33mChecking for resources: \e[00m"
+sleep 0.3
+
+command -v links2 >/dev/null 2>&1 || { echo "links2 it's not installed.  Aborting." >&2; exit 1; }
+echo -e "\e[00;32mInstalled!\e[00m"
+
+command -v exiftool >/dev/null 2>&1 || { echo "exiftool it's not installed.  Aborting." >&2; exit 1; }
+echo -e "\e[00;32mInstalled!\e[00m"
+
+command -v whois >/dev/null 2>&1 || { echo "whois it's not installed.  Aborting." >&2; exit 1; }
+echo -e "\e[00;32mInstalled!\e[00m"
+
+command -v wget >/dev/null 2>&1 || { echo "wget it's not installed.  Aborting." >&2; exit 1; }
+echo -e "\e[00;32mInstalled!\e[00m"
+
+
 echo "TARGET DOMAIN ... Example: domain.org"
 read target
 
