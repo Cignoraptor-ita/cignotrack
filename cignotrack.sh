@@ -25,7 +25,7 @@ echo -e "CODENAME: \e[01;43mCanto del cigno 0.2\e[00m -- \e[00;31m Coded for pri
 any illegal use of this tool\e[00m"
 echo " "
 bar
-echo -e "\e[01;34mcoded by Cignoraptor\e[00m --- contact for advanced versions or suggestions > \e[00;34mroot4sec6per3@openmailbox.org\e[00m"
+echo -e "\e[01;34mcoded by Cignoraptor\e[00m --- contact for advanced versions or suggestions > \e[00;34mcignointel[AT]gmail.com\e[00m"
 echo " "
 
 echo -e "\e[00;33mChecking for resources: \e[00m"
