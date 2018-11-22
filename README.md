@@ -10,7 +10,7 @@ Cignotrack has this features:
 - Extract and analyze the target images and documents metadata
 - Search target emails and social media tracking
 - Search for sensitive files
-- Phishing with automatic scenario
+- Phishing with preloaded scenarios
 
 Tool coded for security testing, the author decline any illegal use of this tool.
 
