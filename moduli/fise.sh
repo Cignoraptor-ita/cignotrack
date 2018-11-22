@@ -102,6 +102,12 @@ echo "http://$target/test.html" >> intere.txt
 echo "http://$target/test" >> intere.txt
 echo "http://$target/login" >> intere.txt
 echo "http://$target/old.aspx" >> intere.txt
+echo "http://$target/old" >> intere.txt
+echo "http://$target/old.html" >> intere.txt
+echo "http://$target/files" >> intere.txt
+echo "http://$target/share" >> intere.txt
+echo "http://$target/passwords" >> intere.txt
+echo "http://$target/private" >> intere.txt
 
 for line in `cat intere.txt`; do
 
