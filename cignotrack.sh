@@ -32,16 +32,16 @@ echo -e "\e[00;33mChecking for resources: \e[00m"
 sleep 0.3
 
 command -v links2 >/dev/null 2>&1 || { echo "links2 it's not installed.  Aborting." >&2; exit 1; }
-echo -e "\e[00;32mInstalled!\e[00m"
+:
 
 command -v exiftool >/dev/null 2>&1 || { echo "exiftool it's not installed.  Aborting." >&2; exit 1; }
-echo -e "\e[00;32mInstalled!\e[00m"
+:
 
 command -v whois >/dev/null 2>&1 || { echo "whois it's not installed.  Aborting." >&2; exit 1; }
-echo -e "\e[00;32mInstalled!\e[00m"
+:
 
 command -v wget >/dev/null 2>&1 || { echo "wget it's not installed.  Aborting." >&2; exit 1; }
-echo -e "\e[00;32mInstalled!\e[00m"
+echo -e "\e[00;32mDependencies Installed!\e[00m"
 
 
 echo "TARGET DOMAIN ... Example: domain.org"
