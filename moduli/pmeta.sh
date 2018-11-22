@@ -58,6 +58,6 @@ echo "============================="
 exiftool * | grep --color -E "GPS Longitude"
 echo " "
 sleep 0.4
+cd - >> /dev/null
 rm -R images-analysis
 sleep 0.3
-cd - >> /dev/null
