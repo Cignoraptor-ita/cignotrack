@@ -9,9 +9,7 @@ echo " "
 sleep 0.6
 
 
-echo " "
-echo -e "\e[01;33mSearching for meta tag and hidden fields in the whole domain: \e[00m" 
-sleep 2
+
 
 wget --no-check-certificate -qO- $target > fs.html
 
@@ -20,6 +18,24 @@ cat fs.html | egrep -o "(http|https):.*\">" | awk 'BEGIN {FS="\""};{print $1}' >
 cat sm.txt | grep "$target" > smt.txt
 
 rm sm.txt
+
+
+echo "========"
+echo -e "\e[00;33mFiles .conf: \e[00m"
+echo " "
+cat smt.txt | grep -e ".conf"
+echo "======="
+echo " "
+echo "========"
+echo -e "\e[00;33mFiles .log: \e[00m"
+echo " "
+cat smt.txt | grep -e ".log"
+echo "======="
+echo -e "\e[00;34m---------------------------------\e[00m"
+echo " "
+
+echo -e "\e[01;33mSearching for meta tag | hidden fields | debug leaks in the whole domain: \e[00m" 
+sleep 2
 
 for line in `cat smt.txt`; do
 
@@ -40,8 +56,11 @@ grep --color '<input type="hidden"' out
 echo "------ "
 echo " "
 
+
 echo -e "\e[01;33mSearching for default passwords and debug comments\e[00m: "
 echo "------ "
+sleep 0.5
+
 grep --color -e "default password" -e "debug" out
 grep --color -w -e "<!--" out
 grep --color -w -e "temporary access" -e "temporary password" out
@@ -108,37 +127,54 @@ echo "http://$target/files" >> intere.txt
 echo "http://$target/share" >> intere.txt
 echo "http://$target/passwords" >> intere.txt
 echo "http://$target/private" >> intere.txt
+echo "http://$target/database" >> intere.txt
+echo "http://$target/condiviso" >> intere.txt
+echo "http://$target/details" >> intere.txt
+echo "http://$target/indice" >> intere.txt
+echo "http://$target/index-of" >> intere.txt
+echo "http://$target/credentials" >> intere.txt
+echo "http://$target/credenziali" >> intere.txt
+echo "http://$target/riserved" >> intere.txt
+echo "http://$target/riservato" >> intere.txt
+echo "http://$target/confidential" >> intere.txt
+echo "http://$target/confidenziale" >> intere.txt
+echo "http://$target/log" >> intere.txt
+echo "http://$target/logs" >> intere.txt
+echo "http://$target/secret" >> intere.txt
+echo "http://$target/images" >> intere.txt
+echo "http://$target/vids" >> intere.txt
+echo "http://$target/videos" >> intere.txt
+echo "http://$target/pics" >> intere.txt
+echo "http://$target/main" >> intere.txt
+echo "http://$target/includes" >> intere.txt
+echo "http://$target/default" >> intere.txt
+echo "http://$target/index/" >> intere.txt
+echo "http://$target/error" >> intere.txt
+echo "http://$target/error.php" >> intere.txt
+echo "http://$target/conf" >> intere.txt
+
 
 for line in `cat intere.txt`; do
 
-echo -e "\e[01;32m$line\e[00m"
+#echo -e "\e[01;32m$line\e[00m"
 curl -o /dev/null --silent --head --write-out '%{http_code}\n' -L $line > status.txt
 status=$(cat status.txt)
 
 if [[ $status = "200" ]]
 then
-echo -e "\e[01;33mFile exist!\e[00m"
-
-elif [[ $status = "403" ]]
+echo -e "\e[01;33mFile exist!-----> $line\e[00m"
+elif [[ $status = "404" ]]
 then
-echo -e "\e[01;38mFile access is Forbidden\e[00m"
-
-elif [[ $status = "301" ]]
-then
-echo -e "\e[01;38mFile is moved\e[00m"
-
-elif [[ $status = "400" ]]
-then
-echo -e "Status 400 ---> \e[01;38mFile not found\e[00m"
-
+:
 else
-
-echo -e "\e[01;39mFile not exist or there is a problem to access it\e[00m"
+:
+#echo -e "\e[01;39mFile not exist or there is a problem to access it\e[00m"
 fi
 
 
-sleep 1
+sleep 0.2
 done
+
 
 echo "-------------"
 echo " "
@@ -146,8 +182,8 @@ sleep 0.3
 echo -e "\e[00;31mSearch for header response "
 sleep 0.5
 
-curl -L -I --silent --max-time 8 "http://$target/" | grep "@"
-curl -L -I --silent --max-time 8 "https://$target/" | grep "@"
+curl -L -I --silent --max-time 7 "http://$target/" | grep "@"
+curl -L -I --silent --max-time 7 "https://$target/" | grep "@"
 
 echo " "
 sleep 0.3
