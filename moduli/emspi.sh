@@ -7,7 +7,7 @@ echo -e "\e[00;31mEMAIL SEARCH\e[00m..."
 
 echo " "
 
-links2 -ssl.certificates 0 -dump $target > et.txt
+links2 -ssl.certificates 0 -dump http://$target > et.txt
 sleep 0.5
 echo -e "\e[01;33m$target emails from website\e[00m..."
 grep --color -Eio "[a-zA-Z0-9]+@[a-z0-9]+.[a-z]+" et.txt
