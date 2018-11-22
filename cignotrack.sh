@@ -44,7 +44,7 @@ command -v wget >/dev/null 2>&1 || { echo "wget it's not installed.  Aborting." 
 echo -e "\e[00;32mDependencies Installed!\e[00m"
 
 
-echo "TARGET DOMAIN ... Example: domain.org"
+echo "TARGET DOMAIN ... Example: domain.org | \e[00;31mNever use http://\e[00,32m (just a domain!)\e[00m"
 read target
 
 cd moduli >> /dev/null
