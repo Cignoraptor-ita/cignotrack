@@ -138,7 +138,8 @@ echo -e "Some Linkedin people links \e[00;31massociated\e[00m with organization 
 echo -e "\e[00;31mBETA \e[00m | \e[00;33mMay generate false positives\e[00m "
 sleep 2
 
-links2 -dump google.nl/search?q=site:linkedin.com+"$target" > la.txt
+links2 -dump https://duckduckgo.com/?q=site%3Alinkedin.com+%22$userc%22+%22$userc%22 > la.txt
+#links2 -dump google.nl/search?q=site:linkedin.com+"$target" > la.txt
 
 cat la.txt | grep --color "http://" > lah.txt
 cat lah.txt | grep -Eio "https://[a-zA-Z0-9./:-]+"
@@ -148,17 +149,49 @@ sleep 0.3
 rm fs.html && rm sm.txt
 rm la.txt
 echo " "
-echo -e "\e[01;36mSome Facebook links associated \e[00;33m(using google hacks)\e[00m"
+echo -e "\e[01;36mSome Facebook links associated \e[00;33m(using duckduckgo)\e[00m"
 sleep 2
 echo " "
 
-links2 -dump google.es/search?q=site:facebook.com+AND+"$userc"+"$userc"+"$userc" > socialfb.txt
+#links2 -dump https://duckduckgo.com/?q=site%3Afacebook.com+%22$userc%22+%22$userc%22 > socialfb.txt
+#links2 -dump google.es/search?q=site:facebook.com+AND+"$userc"+"$userc"+"$userc" > socialfb.txt
+
+links2 -dump https://duckduckgo.com/?q=site%3Afacebook.com+%22$userc%22+%22$target%22 > fb.txt
+
 
 echo "LINKS"
 echo " "
 echo -e "\e[01;34mFACEBOOK\e[00m"
-cat socialfb.txt | grep "https://" > fbhttps.txt
-cat fbhttps.txt | grep -Eio "https://[a-zA-Z0-9./:-]+"
-rm fbhttps.txt
+cat fb.txt | grep "www."
+
+rm fb.txt
 
 echo " "
+
+echo -e "\e[00;44m                                 \e[00m"
+echo -e "01;34mStarting cignosocial >>>> \e[00m"
+echo " "
+
+sleep 1
+echo " "
+echo -e "\e[00;34m+\e[00;31m-\e[00;34m+\e[00;31m-\e[00;34m+\e[00;31m-\e[00;34m+\e[00;31m-\e[00;34m+\e[00;31m-\e[00;34m+\e[00;31m-\e[01;34mCIGNOSOCIAL by \e[00;44mCignoraptor\e[01;39m___\e[00m"
+echo " "
+sleep 1
+
+
+links2 -dump https://duckduckgo.com/?q=site%3Afacebook.com+%22$userc%22+%22$userc%22 > socialfb.txt
+#links2 -dump google.com/search?q=site:facebook.com+AND+"$target" > socialfb.txt
+links2 -dump startpage.com/do/dsearch?query=host%3Amyspace.com+"$target" > mysp.txt 
+links2 -dump startpage.com/do/dsearch?query=host%3Anetlog.com.com+"$target" > netl.txt
+links2 -dump https://duckduckgo.com/?q=site%3Atwitter.com+%22$userc%22+%22$target%22  > twi.txt
+#links2 -dump google.com/search?q=site:twitter.com+AND+"$target" > twi.txt
+links2 -dump startpage.com/do/dsearch?query=host%3Alinkedin.com+"$target" > linke.txt
+links2 -dump startpage.com/do/dsearch?query=host%3Ainstagram.com+"$target" > insta.txt
+links2 -dump https://duckduckgo.com/?q=site%3Abadoo.com+%22$userc%22+%22$userc%22 > badu.txt
+#links2 -dump google.com/search?q=site:badoo.com+AND+"$target" > badu.txt
+
+echo " "
+echo "RESULTS"
+sleep 1
+echo " "
+bash socialr.sh
