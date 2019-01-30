@@ -21,7 +21,7 @@ echo -e "\e[01;34m--------------------------------------------------------------
 echo -e "Corporate espionage tool for testing privacy and security\e[00m"
 echo -e "\e[01;34m________________________________________________________________________________\e[00m"
 echo " "
-echo -e "CODENAME: \e[01;40mCanto del cigno 0.5\e[00m -- \e[00;31m Coded for privacy testing - The author decline any responsability for 
+echo -e "CODENAME: \e[01;40mCanto del cigno 0.7\e[00m -- \e[00;31m Coded for privacy testing - The author decline any responsability for 
 any illegal use of this tool\e[00m"
 echo " "
 bar
@@ -44,6 +44,7 @@ command -v wget >/dev/null 2>&1 || { echo "wget it's not installed.  Aborting." 
 echo -e "\e[00;32mDependencies Installed!\e[00m"
 
 
+
 echo -e "TARGET DOMAIN ... Example: domain.org | \e[00;31mNever use http://\e[00;32m (just a domain!)\e[00m"
 read target
 
@@ -58,7 +59,7 @@ rm dap.txt
 echo " "
 PS3="Choose an option:"
 
-select opt in "WHOIS-IP-TECHNOLOGIES DISCOVER" "HOSTILITY-HATERS ANALYSIS" "EMAIL DISCOVERY" "IMAGES DISCOVERY AND ANALYSIS" "DOCUMENTS DISCOVERY AND ANALYSIS" "SOCIAL MEDIA TRACKING" "SENSITIVE FILES SEARCH" "SOCIAL ENGINEERING TEST" "RESTART"
+select opt in "WHOIS-IP-TECHNOLOGIES DISCOVER" "HOSTILITY-HATERS ANALYSIS" "EMAIL DISCOVERY" "IMAGES DISCOVERY AND ANALYSIS" "DOCUMENTS DISCOVERY AND ANALYSIS" "SOCIAL MEDIA TRACKING" "SENSITIVE FILES SEARCH" "SOCIAL ENGINEERING TEST" "CLEAR AND RESTART"
 do
     case "$opt" in
         'WHOIS-IP-TECHNOLOGIES DISCOVER')
@@ -86,12 +87,15 @@ bash hostility.sh
           bash sociale.sh
           
           ;;
-          'RESTART')
-          rm ricorda.txt && rm clean.txt
+          'CLEAR AND RESTART')
+          #rm ricorda.txt && rm clean.txt
+          echo -e "\e[01;34mDelete all data logs with shred!\e[00m"
+          shred -n 7 -u -z *.txt
+          echo -e "\e[01;33mDone!\e[00m"
+          echo " "
           cd - >> /dev/null
           bash cignotrack.sh
           break;
           esac
           done
 cd - >> /dev/null
-
