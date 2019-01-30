@@ -152,6 +152,30 @@ echo "http://$target/index/" >> intere.txt
 echo "http://$target/error" >> intere.txt
 echo "http://$target/error.php" >> intere.txt
 echo "http://$target/conf" >> intere.txt
+echo "http://$target/_index.php" >> intere.txt
+echo "http://$target/_index.html" >> intere.txt
+echo "http://$target/_index" >> intere.txt
+echo "http://$target/index.php-bak" >> intere.txt
+echo "http://$target/info.php" >> intere.txt
+echo "http://$target/phpsecinfo" >> intere.txt
+echo "http://$target/php.ini" >> intere.txt
+echo "http://$target/phpmyadmin" >> intere.txt
+echo "http://$target/mysqladmin" >> intere.txt
+echo "http://$target/dabadmin" >> intere.txt
+echo "http://$target/logon.php" >> intere.txt
+echo "http://$target/login-test.php" >> intere.txt
+echo "http://$target/xmlrpc.php" >> intere.txt
+echo "http://$target/myadmin" >> intere.txt
+echo "http://$target/awstats" >> intere.txt
+echo "http://$target/application" >> intere.txt
+echo "http://$target/test2" >> intere.txt
+echo "http://$target/test2.php" >> intere.txt
+echo "http://$target/test.html" >> intere.txt
+echo "http://$target/test2.php-bak" >> intere.txt
+echo "http://$target/_test" >> intere.txt
+echo "http://$target/_test2" >> intere.txt
+
+
 
 
 for line in `cat intere.txt`; do
