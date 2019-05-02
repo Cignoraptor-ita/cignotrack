@@ -63,10 +63,7 @@ select opt in "WHOIS-IP-TECHNOLOGIES DISCOVER" "HOSTILITY-HATERS ANALYSIS" "EMAI
 do
     case "$opt" in
         'WHOIS-IP-TECHNOLOGIES DISCOVER')
-bash whoiseip.sh
-     ;;
-     'HOSTILITY-HATERS ANALYSIS')
-bash hostility.sh
+          bash whoiseip.sh
           ;;
           'EMAIL DISCOVERY')
           bash emspi.sh
