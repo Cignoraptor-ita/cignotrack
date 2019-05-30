@@ -5,10 +5,11 @@ using OSINT and social engineering.
 
 Cignotrack has this features:
 
-- Discover whois, IP and technologies related informations
 - Extract and analyze the target images and documents metadata
+- Discover whois, IP and technologies related informations
 - Search target emails and social media tracking
 - Search for sensitive files
+- Tracking the target internet search (DNS cache snooping)
 - Phishing with preloaded scenarios
 
 Tool coded for security testing, the author decline any illegal use of this tool.
