@@ -28,5 +28,3 @@ PS: DOMAIN!!!
 Exemple: organizzazione.net -----> This is a domain!
 
 Tool coded for security test, The author decline any responsability for any illegal use of this tool, use at your own risk.
-
-![](https://ibb.co/fbcKkV)
