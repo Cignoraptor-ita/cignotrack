@@ -48,7 +48,7 @@ echo -e "\e[00;32mDependencies Installed!\e[00m"
 
 
 
-echo -e "TARGET DOMAIN ... Example: domain.org | \e[00;31mNever use http://\e[00;32m (just a domain!)\e[00m"
+echo -e "TARGET DOMAIN... Example: domain.org | \e[00;31mNever use http://\e[00;32m (just a domain!)\e[00m"
 read target
 
 cd moduli >> /dev/null
